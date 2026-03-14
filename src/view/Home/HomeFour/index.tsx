@@ -23,7 +23,7 @@ const HomeFour = () => {
                     mirrored: false
                 }}
             >
-                <div>
+                <div className='icon-container'>
                     <Horse /> {/* I'm lime-green, 32px, and bold! */}
                     <Heart /> {/* Me too! */}
                     <Cube /> {/* Me three :) */}

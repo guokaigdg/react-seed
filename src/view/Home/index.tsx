@@ -54,35 +54,46 @@ function Home() {
 
     return (
         <div className={homeClasses}>
-            <div className='home-tab'>
-                <div className='github-icon'>
-                    <a href='https://github.com/guokaigdg/react-enterprise-template'>
-                        <GithubLogo size={52} color='#f9f4da' />
-                    </a>
-                </div>
-                {MenuLink.map((item: LinkItem) => (
-                    <div key={item.name} className='btn-wrap'>
-                        <Button
-                            type='text'
-                            className='text-btn'
-                            active={activeLink === item.link}
-                            onClick={() => handleClickLink(item.link)}
-                        >
+            <Outlet />
+            <div className={CX('home-dock', {
+                'home-dock-light': activeLink === '/home/two'
+            })}>
+                <div className='dock-items'>
+                    <div className='dock-item github-dock'>
+                        <a href='https://github.com/guokaigdg/react-seed' className='dock-link'>
                             <IconContext.Provider
                                 value={{
-                                    size: 24,
-                                    weight: 'duotone',
+                                    size: 28,
+                                    weight: 'regular',
                                     mirrored: false
                                 }}
                             >
-                                {item.icon}
+                                <GithubLogo />
                             </IconContext.Provider>
-                            <span className='link-text'>{item.name}</span>
-                        </Button>
+                        </a>
                     </div>
-                ))}
+                    {MenuLink.map((item: LinkItem) => (
+                        <div key={item.name} className='dock-item'>
+                            <Button
+                                type='text'
+                                className='dock-btn'
+                                active={activeLink === item.link}
+                                onClick={() => handleClickLink(item.link)}
+                            >
+                                <IconContext.Provider
+                                    value={{
+                                        size: 24,
+                                        weight: activeLink === item.link ? 'fill' : 'regular',
+                                        mirrored: false
+                                    }}
+                                >
+                                    {item.icon}
+                                </IconContext.Provider>
+                            </Button>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <Outlet />
         </div>
     );
 }

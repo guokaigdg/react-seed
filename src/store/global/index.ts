@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {fetchPokemon, fetchPostOrder} from '@/api';
+import {fetchPokemon, fetchPostOrder, searchPokemon, fetchPokemonByName} from '@/api';
 import {pokemonOptions} from '@/interface/http';
 
 class Global {
@@ -10,8 +10,11 @@ class Global {
     count = 0;
     name = 'react';
     data: any = [];
+    searchResults: any = [];
+    pokemonDetail: any = null;
     orderData: any = [];
     loading = true;
+    searchLoading = false;
 
     addCount = () => {
         this.count++;
@@ -40,35 +43,70 @@ class Global {
             });
         }
     };
+
+    // 搜索宝可梦
+    searchPokemonByName = async (query: string) => {
+        if (!query.trim()) {
+            runInAction(() => {
+                this.searchResults = [];
+            });
+            return;
+        }
+        
+        runInAction(() => {
+            this.searchLoading = true;
+        });
+        
+        try {
+            const result: any = await searchPokemon(query);
+            runInAction(() => {
+                this.searchResults = result.results || [];
+                this.searchLoading = false;
+            });
+        } catch (err) {
+            console.log('搜索失败:', err);
+            runInAction(() => {
+                this.searchResults = [];
+                this.searchLoading = false;
+            });
+        }
+    };
+
+    // 获取宝可梦详情
+    getPokemonDetail = async (name: string) => {
+        runInAction(() => {
+            this.searchLoading = true;
+        });
+        
+        try {
+            const result = await fetchPokemonByName(name);
+            runInAction(() => {
+                this.pokemonDetail = result;
+                this.searchLoading = false;
+            });
+            return result;
+        } catch (err) {
+            console.log('获取详情失败:', err);
+            runInAction(() => {
+                this.pokemonDetail = null;
+                this.searchLoading = false;
+            });
+            return null;
+        }
+    };
+
+    // 清空搜索结果
+    clearSearchResults = () => {
+        runInAction(() => {
+            this.searchResults = [];
+            this.pokemonDetail = null;
+        });
+    };
+
     getPostOrder = async (params: any) => {
         this.loading = true;
         try {
             const result: any = await fetchPostOrder(params);
-            // const result = {
-            //     orders: [
-            //         {
-            //             id: 1,
-            //             qq: '2333333',
-            //             ver: [
-            //                 // '\u9633\u6781\u94f6 \u5927\u95e8\u7259',
-            //                 // '\n\u9ea6\u65cb\u98ce \u5c0f\u95e8\u7259',
-            //                 // '\n\u9ea6\u65cb\u98ce \u5c0f\u95e8\u7259',
-            //                 '阳极银',
-            //                 '麦旋风',
-            //                 '陨石灰',
-            //                 '葵花黄',
-            //                 '亚麻',
-            //                 '闪白',
-            //                 '闪红',
-            //                 '浅蓝',
-            //                 '浅粉',
-            //                 '浅绿'
-            //             ],
-            //             phone: '111****233'
-            //         }
-            //     ],
-            //     result: 'OK'
-            // };
             const {orders, result: newResult} = result;
             if (newResult === 'Fail') {
                 console.log('请求结果出错');

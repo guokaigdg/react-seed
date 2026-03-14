@@ -49,7 +49,7 @@ const About = () => {
 
     return (
         <div className='about-root'>
-            <a href='https://github.com/guokaigdg/react-enterprise-template'>
+            <a href='https://github.com/guokaigdg/react-seed'>
                 <GithubLogo size={68} color='#f9f4da' />
             </a>
             <p>Hello About</p>

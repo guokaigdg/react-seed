@@ -23,14 +23,14 @@
         "ESLint",
         "template"
     ],
-    "homepage": "./react-enterprise-template",
+    "homepage": "https://guokaigdg.github.io/react-seed/",
     "scripts": {
         "dev": "npm run start",
         "start": "env-cmd -r .env.json -e development node webpack/server",
         "build:qa": "env-cmd -r .env.json -e qa webpack --config ./webpack/config/webpack.prod.js",
         "build:prod": "env-cmd -r .env.json -e production webpack --config ./webpack/config/webpack.prod.js",
         "clean": "rm -rf node_modules",
-        "deploy": "npm run build:prod && gh-pages -d build -r https://github.com/guokaigdg/react-enterprise-template.git"
+         "deploy": "npm run build:prod && gh-pages -d build"
     },
     "engines": {
         "node": ">= 16.0.0",

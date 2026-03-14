@@ -11,7 +11,7 @@
 
 ## 🔗 Demo
 
--   preview (PC) [react-enterprise-template](https://guokaigdg.github.io/react-enterprise-template/)
+-   preview (PC) [react-seed](https://guokaigdg.github.io/react-seed/)
 -   preview（mobile） [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## 👨🏻‍💻 Project Description
@@ -47,20 +47,20 @@
 
 ## 🎄 Upcoming Features:
 
--   ① Styles ✅ Submitted on 2023/2/6 [config: 🔧 Add style file (css/less/sass/postCss) processing](https://github.com/guokaigdg/react-enterprise-template/commit/11fb415bac609dfa7474a1ee2db93ccb4a350a51)
--   ② Code specification ✅ Submitted on 2023/2/7 [config: 🔧  Add Prettier/ESlint/StyleLint/EditorConfig code specification](https://github.com/guokaigdg/react-enterprise-template/commit/87dd1ca333f81203dd245a6eb40479a0745f096f)
--   ③ Routing ✅ Submitted on 2023/2/8 [config: 🔧 Add routing management react-router-dom v6](https://github.com/guokaigdg/react-enterprise-template/commit/239446d0709eb52bad2b48af4983eef91c49f60d)
--   ④ Network request ✅ Submitted on 2023/2/21 [feat: ✨  Add network request Axios v1](https://github.com/guokaigdg/react-enterprise-template/commit/27cd67f641d5ecf53b89770195f75bd32bccce46)
--   ⑤ Data sharing ✅ Submitted on 2023/2/13 [feature: ✨  Add state management MobX v6](https://github.com/guokaigdg/react-enterprise-template/commit/992e1884943d4f8bda836f48c60df473418397d7)
--   ⑥ React Hook Rules ✅ Submitted 2023/3/2 [feat: ✨ Added check for React Hook rules](https://github.com/guokaigdg/react-enterprise-template/commit/15346c07a9ffd74f69dd1bb0dd6a4a42aa72df57)
--   ⑦ Encapsulated global SVG componen ✅ Submitted 2023/3/6 [feat: ✨ Encapsulated global SVG component](https://github.com/guokaigdg/react-enterprise-template/commit/066fc6ff28c1ac3b0d6422ebda8d59cdf9275d3a)
--   ⑧ Mobile adaptation ✅ [feat: ✨ Add mobile adaptation solution: postcss px to viewport](https://github.com/guokaigdg/react-enterprise-template/commit/78b10e2d0bada75f4043eaa43aecffb2973fd357)
+-   ① Styles ✅ Submitted on 2023/2/6 [config: 🔧 Add style file (css/less/sass/postCss) processing](https://github.com/guokaigdg/react-seed/commit/11fb415bac609dfa7474a1ee2db93ccb4a350a51)
+-   ② Code specification ✅ Submitted on 2023/2/7 [config: 🔧  Add Prettier/ESlint/StyleLint/EditorConfig code specification](https://github.com/guokaigdg/react-seed/commit/87dd1ca333f81203dd245a6eb40479a0745f096f)
+-   ③ Routing ✅ Submitted on 2023/2/8 [config: 🔧 Add routing management react-router-dom v6](https://github.com/guokaigdg/react-seed/commit/239446d0709eb52bad2b48af4983eef91c49f60d)
+-   ④ Network request ✅ Submitted on 2023/2/21 [feat: ✨  Add network request Axios v1](https://github.com/guokaigdg/react-seed/commit/27cd67f641d5ecf53b89770195f75bd32bccce46)
+-   ⑤ Data sharing ✅ Submitted on 2023/2/13 [feature: ✨  Add state management MobX v6](https://github.com/guokaigdg/react-seed/commit/992e1884943d4f8bda836f48c60df473418397d7)
+-   ⑥ React Hook Rules ✅ Submitted 2023/3/2 [feat: ✨ Added check for React Hook rules](https://github.com/guokaigdg/react-seed/commit/15346c07a9ffd74f69dd1bb0dd6a4a42aa72df57)
+-   ⑦ Encapsulated global SVG componen ✅ Submitted 2023/3/6 [feat: ✨ Encapsulated global SVG component](https://github.com/guokaigdg/react-seed/commit/066fc6ff28c1ac3b0d6422ebda8d59cdf9275d3a)
+-   ⑧ Mobile adaptation ✅ [feat: ✨ Add mobile adaptation solution: postcss px to viewport](https://github.com/guokaigdg/react-seed/commit/78b10e2d0bada75f4043eaa43aecffb2973fd357)
 
--   ⑨ Explanation of the differences in the use of Mobx ✅ [feat: ✨ Add explanations and usage examples for makeObservable and makeAutoObservable](https://github.com/guokaigdg/react-enterprise-template/commit/11cee6d4e2f24eebe2d3eec3357d73eca7f9aa8c)
+-   ⑨ Explanation of the differences in the use of Mobx ✅ [feat: ✨ Add explanations and usage examples for makeObservable and makeAutoObservable](https://github.com/guokaigdg/react-seed/commit/11cee6d4e2f24eebe2d3eec3357d73eca7f9aa8c)
 
--   ⑩ Mobx react lite optimization ✅ [feat: ✨ Add the use and optimization of observer and observer in mobx react lite](https://github.com/guokaigdg/react-enterprise-template/commit/fe5620b4281e49d44cb25a945a6ba04f125f3f29)
+-   ⑩ Mobx react lite optimization ✅ [feat: ✨ Add the use and optimization of observer and observer in mobx react lite](https://github.com/guokaigdg/react-seed/commit/fe5620b4281e49d44cb25a945a6ba04f125f3f29)
 
--   ⑪ Add UI design materials ✅ [docs: 📝 Update development design reference documents](https://github.com/guokaigdg/react-enterprise-template/commit/a75a6a705a0e2367dbfcef5e5d562e72b63057df)
+-   ⑪ Add UI design materials ✅ [docs: 📝 Update development design reference documents](https://github.com/guokaigdg/react-seed/commit/a75a6a705a0e2367dbfcef5e5d562e72b63057df)
 
 ## ⌛️ Install project dependencies
 
@@ -185,7 +185,7 @@ merge     🔀 Merge branches
 
 ## ⭐️ Stargazers
 
-[![Stargazers repo roster for @guokaigdg/react-enterprise-template](https://reporoster.com/stars/guokaigdg/react-enterprise-template)](https://github.com/guokaigdg/react-enterprise-template/stargazers)
+[![Stargazers repo roster for @guokaigdg/react-seed](https://reporoster.com/stars/guokaigdg/react-seed)](https://github.com/guokaigdg/react-seed/stargazers)
 
 ## 💡 Open Source License
 

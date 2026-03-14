@@ -7,11 +7,13 @@ import './index.less';
 const HomeThree = () => {
     return (
         <div className='home-three-root'>
-            <div className='home-three-base'>
-                <ObserverHoc />
-            </div>
-            <div className='home-three-base'>
-                <ObserverComponents />
+            <div className='home-three-container'>
+                <div className='home-three-base'>
+                    <ObserverHoc />
+                </div>
+                <div className='home-three-base'>
+                    <ObserverComponents />
+                </div>
             </div>
         </div>
     );

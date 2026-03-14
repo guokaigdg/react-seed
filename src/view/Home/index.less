@@ -1,48 +1,140 @@
 .home-root {
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    padding-top: 80px;
+    padding-top: 80px; /* 为顶部导航栏留出空间 */
     background-image: url('@/assets/images/bgp.png');
 
-    .home-tab {
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        width: 300px;
-        padding: 15px;
+    &-no-bg {
+        background-image: none;
+    }
 
-        .github-icon {
-            position: relative;
-            top: -35px;
+    /* Dock bar */
+    .home-dock {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+
+        .dock-items {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            margin-left: 62px;
-            background: #565653;
-            border-radius: 50%;
+            padding: 10px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+            .dock-item {
+                position: relative;
+                margin: 0 4px;
+                transition: transform 0.2s ease;
+
+                &:hover {
+                    transform: translateY(-3px) scale(1.1);
+                }
+
+                &.github-dock {
+                    margin-right: 12px;
+                    padding-right: 12px;
+                    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+                    .dock-link {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 8px;
+                        color: #f9f4da;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                .dock-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 50px;
+                    padding: 0;
+                    color: #f9f4da;
+                    background: transparent;
+                    border: none;
+                    border-radius: 15px;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.15);
+                    }
+
+                    &.cp-btn-active {
+                        color: #fcba28;
+                        background: rgba(252, 186, 40, 0.1);
+                    }
+
+                    .link-text {
+                        display: none;
+                    }
+                }
+            }
         }
 
-        .btn-wrap {
-            margin-bottom: 5px;
+        /* Light theme for home/two */
+        &.home-dock-light {
+            .dock-items {
+                background: rgb(158 157 157 / 20%);
+                // backdrop-filter: blur(10px);
+                // -webkit-backdrop-filter: blur(10px);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
-            .text-btn {
-                justify-content: flex-start;
-                width: 100%;
-                min-width: 250px;
+                .dock-item {
+                    &.github-dock {
+                        border-right: 1px solid rgba(0, 0, 0, 0.2);
 
-                .link-text {
-                    margin-left: 5px;
+                        .dock-link {
+                            color: #333;
+                        }
+                    }
+
+                    .dock-btn {
+                        color: #333;
+
+                        &:hover {
+                            background: rgba(0, 0, 0, 0.1);
+                        }
+
+                        &.cp-btn-active {
+                            color: #fcba28;
+                            background: rgba(252, 186, 40, 0.2);
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-.home-root-no-bg {
-    background-image: none;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-root {
+        .home-dock {
+            .dock-items {
+                padding: 6px 12px;
+
+                .dock-item {
+                    .dock-btn {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
 }

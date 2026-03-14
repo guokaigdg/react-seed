@@ -48,6 +48,17 @@ h2,
 h3,
 h4,
 h5,
+
+/* 8. Hide scrollbars globally */
+/* WebKit browsers (Chrome, Safari, Edge) */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
 h6 {
     overflow-wrap: break-word;
 }
