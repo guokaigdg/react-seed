@@ -24,6 +24,16 @@
 
         .search-btn{
             margin-left: 20px;
+            height: 40px;
+            background-color: #fcba28;
+            color: #fff;
+        }
+        
+        .clear-btn {
+            margin-left: 10px;
+            height: 40px;
+            background-color: #666;
+            color: #fff;
         }
     }
 
@@ -34,6 +44,16 @@
         justify-content: center;
         padding: 5px;
         overflow: scroll;
+        align-content: flex-start;
+
+
+        &::-webkit-scrollbar {
+            width: 0;
+            display: none;
+        }
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
 
         .pokemon-item {
             display: flex;
@@ -61,12 +81,202 @@
                 height: 100px;
                 margin: 10px;
             }
+
+             .pokemon-types {
+                display: flex;
+                gap: 5px;
+                margin-top: 5px;
+
+                .type-badge-small {
+                    padding: 3px 10px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    text-transform: capitalize;
+                    background-color: #6b5b95;
+                    color: #fff;
+                }
+            }
         }
 
         .pokemon-item-bottom {
             width: 100%;
             display: flex;
             justify-content: center;
+        }
+    }
+       .pokemon-detail-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+
+        .pokemon-detail-content {
+            background-color: #fff;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                display: none;
+            }
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            .detail-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+
+                h2 {
+                    margin: 0;
+                    color: #333;
+                    text-transform: capitalize;
+                }
+
+                .close-btn {
+                    background: none;
+                    border: none;
+                    font-size: 30px;
+                    cursor: pointer;
+                    color: #666;
+                    padding: 0;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:hover {
+                        color: #333;
+                    }
+                }
+            }
+
+            .detail-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .detail-img {
+                    width: 200px;
+                    height: 200px;
+                    margin-bottom: 20px;
+                }
+
+                .detail-info {
+                    width: 100%;
+
+                    .info-row-basic {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        margin-bottom: 20px;
+                        gap: 15px;
+
+                        .basic-info-item {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                            > span:first-child {
+                                font-weight: bold;
+                                color: #555;
+                                margin-bottom: 8px;
+                                font-size: 14px;
+                            }
+
+                            .types {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 5px;
+
+                                .type-badge {
+                                    padding: 4px 10px;
+                                    border-radius: 12px;
+                                    font-size: 12px;
+                                    text-transform: capitalize;
+                                    background-color: #6b5b95;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+
+                    .info-row {
+                        margin-bottom: 15px;
+                        display: flex;
+                        flex-direction: column;
+
+                        > span:first-child {
+                            font-weight: bold;
+                            color: #555;
+                            margin-bottom: 8px;
+                            font-size: 16px;
+                        }
+
+                        .types,
+                        .abilities {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+
+                            .type-badge,
+                            .ability-badge {
+                                padding: 5px 12px;
+                                border-radius: 15px;
+                                font-size: 14px;
+                                text-transform: capitalize;
+                                background-color: #f0f0f0;
+                                color: #333;
+                            }
+
+                            .type-badge {
+                                background-color: #6b5b95;
+                                color: #fff;
+                            }
+                        }
+
+                        .stats {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+
+                            .stat-item {
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 8px;
+                                background-color: #f9f9f9;
+                                border-radius: 5px;
+
+                                .stat-name {
+                                    text-transform: capitalize;
+                                    color: #666;
+                                }
+
+                                .stat-value {
+                                    font-weight: bold;
+                                    color: #333;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -6,6 +6,14 @@
     overflow: scroll;
     color: rgb(152 155 157);
 
+    &::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
     .home-three-base{
         width: 45%;
         height: 80vh;
@@ -13,5 +21,13 @@
         overflow: scroll;
         background-color: #313338;
         border-radius: 10px;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            display: none;
+        }
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 }

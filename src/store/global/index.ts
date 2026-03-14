@@ -1,7 +1,12 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {fetchPokemon} from '@/api/home-two';
+import {fetchPokemon, searchPokemon} from '@/api/home-two';
 import {fetchPostOrder} from '@/api/home-order';
-import {GetRequestPokemonDataType, GetPokemonDataType, GetResponsePokemonData} from '@/api/home-two/types/home-two';
+import {
+    GetRequestPokemonDataType,
+    GetPokemonDataType,
+    GetResponsePokemonData,
+    GetRequestPokemonSearchType
+} from '@/api/home-two/types/home-two';
 import {GetRequestOrderDataType, GetOrderDataType, GetResponseOrdereData} from '@/api/home-order/types/home-order';
 
 class Global {
@@ -29,10 +34,33 @@ class Global {
         try {
             const res: GetResponsePokemonData = await fetchPokemon(params);
             const {results} = res.data;
-            // 在 MobX 中，不管是同步还是异步操作，都可以放到 action 中，
-            // 只是异步操作在修改属性时，需要将赋值操作放到 runInAction 中。
             runInAction(() => {
                 this.data = [...this.data, ...results];
+                this.loading = false;
+            });
+        } catch (err) {
+            console.log(err);
+            runInAction(() => {
+                this.loading = false;
+            });
+        }
+    };
+
+    clearPokemonData = () => {
+        runInAction(() => {
+            this.data = [];
+        });
+    };
+
+    searchPokemonByName = async (params: GetRequestPokemonSearchType) => {
+        runInAction(() => {
+            this.loading = true;
+        });
+        try {
+            const res = await searchPokemon(params.query);
+            const pokemonData = res.data;
+            runInAction(() => {
+                this.data = pokemonData.results;
                 this.loading = false;
             });
         } catch (err) {
