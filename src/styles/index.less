@@ -15,13 +15,13 @@
 }
 
 body {
+
+    font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif,
+        BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial !important;
     /* 3. Add accessible line-height */
     line-height: 1.5;
     /* 4. Improve text rendering */
     -webkit-font-smoothing: antialiased;
-
-    font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif,
-        BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial !important;
 }
 
 /* 5. Improve media defaults */
@@ -57,6 +57,7 @@ h6 {
 p {
     text-wrap: pretty;
 }
+
 h1,
 h2,
 h3,
@@ -69,6 +70,7 @@ h6 {
 /* 9. Create a root stacking context */
 #root {
     isolation: isolate;
+
     .app {
         height: 100vh;
         background: #222;

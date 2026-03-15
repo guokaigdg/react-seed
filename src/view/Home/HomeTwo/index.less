@@ -23,17 +23,17 @@
         }
 
         .search-btn{
-            margin-left: 20px;
             height: 40px;
-            background-color: #fcba28;
+            margin-left: 20px;
             color: #fff;
+            background-color: #fcba28;
         }
         
         .clear-btn {
-            margin-left: 10px;
             height: 40px;
-            background-color: #666;
+            margin-left: 10px;
             color: #fff;
+            background-color: #666;
         }
     }
 
@@ -41,19 +41,18 @@
         display: flex;
         flex: 1;
         flex-wrap: wrap;
-        justify-content: center;
+        place-content: flex-start center;
         padding: 5px;
         overflow: scroll;
-        align-content: flex-start;
-
-
-        &::-webkit-scrollbar {
-            width: 0;
-            display: none;
-        }
 
         -ms-overflow-style: none;
         scrollbar-width: none;
+
+
+        &::-webkit-scrollbar {
+            display: none;
+            width: 0;
+        }
 
         .pokemon-item {
             display: flex;
@@ -67,7 +66,7 @@
             color: #383a3a;
             font-size: 24px;
             background-color: rgb(255 255 255);
-            border-radius: 10px;
+            border-radius: 12px;
 
             &:hover{
                 transform: scale(1.03);
@@ -89,57 +88,55 @@
 
                 .type-badge-small {
                     padding: 3px 10px;
-                    border-radius: 20px;
+                    color: #fff;
                     font-size: 12px;
                     text-transform: capitalize;
                     background-color: #6b5b95;
-                    color: #fff;
+                    border-radius: 20px;
                 }
             }
         }
 
         .pokemon-item-bottom {
-            width: 100%;
             display: flex;
             justify-content: center;
+            width: 100%;
         }
     }
+
        .pokemon-detail-modal {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.7);
+        inset: 0;
+        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1000;
+        background-color: rgb(0 0 0 / 70%);
 
         .pokemon-detail-content {
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            padding: 20px;
+            overflow-y: auto;
             background-color: #fff;
             border-radius: 10px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 20px;
-
-            &::-webkit-scrollbar {
-                width: 0;
-                display: none;
-            }
 
             -ms-overflow-style: none;
             scrollbar-width: none;
 
+            &::-webkit-scrollbar {
+                display: none;
+                width: 0;
+            }
+
             .detail-header {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                justify-content: space-between;
                 margin-bottom: 20px;
-                border-bottom: 1px solid #eee;
                 padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
 
                 h2 {
                     margin: 0;
@@ -148,17 +145,17 @@
                 }
 
                 .close-btn {
-                    background: none;
-                    border: none;
-                    font-size: 30px;
-                    cursor: pointer;
-                    color: #666;
-                    padding: 0;
-                    width: 30px;
-                    height: 30px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    padding: 0;
+                    color: #666;
+                    font-size: 30px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
 
                     &:hover {
                         color: #333;
@@ -182,21 +179,21 @@
 
                     .info-row-basic {
                         display: flex;
-                        justify-content: space-between;
-                        align-items: flex-start;
-                        margin-bottom: 20px;
                         gap: 15px;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
 
                         .basic-info-item {
-                            flex: 1;
                             display: flex;
+                            flex: 1;
                             flex-direction: column;
                             align-items: flex-start;
 
                             > span:first-child {
-                                font-weight: bold;
-                                color: #555;
                                 margin-bottom: 8px;
+                                color: #555;
+                                font-weight: bold;
                                 font-size: 14px;
                             }
 
@@ -207,25 +204,25 @@
 
                                 .type-badge {
                                     padding: 4px 10px;
-                                    border-radius: 12px;
+                                    color: #fff;
                                     font-size: 12px;
                                     text-transform: capitalize;
                                     background-color: #6b5b95;
-                                    color: #fff;
+                                    border-radius: 12px;
                                 }
                             }
                         }
                     }
 
                     .info-row {
-                        margin-bottom: 15px;
                         display: flex;
                         flex-direction: column;
+                        margin-bottom: 15px;
 
                         > span:first-child {
-                            font-weight: bold;
-                            color: #555;
                             margin-bottom: 8px;
+                            color: #555;
+                            font-weight: bold;
                             font-size: 16px;
                         }
 
@@ -238,16 +235,16 @@
                             .type-badge,
                             .ability-badge {
                                 padding: 5px 12px;
-                                border-radius: 15px;
+                                color: #333;
                                 font-size: 14px;
                                 text-transform: capitalize;
                                 background-color: #f0f0f0;
-                                color: #333;
+                                border-radius: 15px;
                             }
 
                             .type-badge {
-                                background-color: #6b5b95;
                                 color: #fff;
+                                background-color: #6b5b95;
                             }
                         }
 
@@ -264,13 +261,13 @@
                                 border-radius: 5px;
 
                                 .stat-name {
-                                    text-transform: capitalize;
                                     color: #666;
+                                    text-transform: capitalize;
                                 }
 
                                 .stat-value {
-                                    font-weight: bold;
                                     color: #333;
+                                    font-weight: bold;
                                 }
                             }
                         }

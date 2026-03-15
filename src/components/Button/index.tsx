@@ -1,4 +1,4 @@
-import React, {FC, CSSProperties} from 'react';
+import React, {CSSProperties} from 'react';
 import type {ButtonType} from './buttonHelpers';
 import CX from 'classnames';
 import './index.less';
@@ -9,13 +9,13 @@ interface ButtonProps {
     type?: ButtonType;
     active?: boolean;
     children?: string | React.ReactNode;
-    onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: FC<ButtonProps> = (props) => {
+const Button = (props: ButtonProps) => {
     const {onClick, children, className, style, active, type = 'default', ...restProps} = props;
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => {
-        (onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)?.(e);
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        onClick?.(e);
     };
     const classes = CX(
         'cp-btn',

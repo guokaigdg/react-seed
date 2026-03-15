@@ -1,12 +1,12 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './index.less';
 
 interface CardProps {
-    children?: string | React.ReactNode;
+    children?: React.ReactNode;
 }
 
-const Card: FC<CardProps> = (props) => {
-    const {children} = props;
+const Card = (props: CardProps) => {
+    const { children } = props;
     return <div className='cp-card'>{children}</div>;
 };
 
