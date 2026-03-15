@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {useStores} from '@/store';
-import {Button} from '@/components';
-import {observer} from 'mobx-react-lite';
+import React, { useState, useEffect } from 'react';
+import { useStores } from '@/store';
+import { Button } from '@/components';
+import { observer } from 'mobx-react-lite';
 import './index.less';
 
 const HomeTwo = () => {
-    const {globalStore} = useStores();
-    const {loading, data, getFetchGetTest, searchPokemonByName, clearPokemonData} = globalStore;
+    const { globalStore } = useStores();
+    const { loading, data, getFetchGetTest, searchPokemonByName, clearPokemonData } = globalStore;
     const [offset, setOffset] = useState<number>(20);
     const [searchKeyword, setSearchKeyword] = useState<string>('');
     const [selectedPokemon, setSelectedPokemon] = useState<any>(null);
@@ -83,8 +83,8 @@ const HomeTwo = () => {
             </div>
 
             <div className='list-root'>
-                {data.map((item: any) => (
-                    <div key={item.name} className='pokemon-item' onClick={() => handlePokemonClick(item)}>
+                {data.map((item: any, index: number) => (
+                    <div key={`${item.name}-${index}`} className='pokemon-item' onClick={() => handlePokemonClick(item)}>
                         <img alt='' className='img' src={`https://img.pokemondb.net/artwork/large/${item.name}.jpg`} />
                         <span>{item.name}</span>
                         {item.detail && item.detail.types && (

@@ -1,6 +1,6 @@
 import React from 'react';
-import {observer} from 'mobx-react-lite';
-import {IconContext, Horse, AddressBook, AndroidLogo, Aperture, Heart, Cube} from '@phosphor-icons/react';
+import { observer } from 'mobx-react-lite';
+import { IconContext, HorseIcon, AddressBookIcon, AndroidLogoIcon, ApertureIcon, HeartIcon, CubeIcon } from '@phosphor-icons/react';
 import './index.less';
 
 const Dashboard = () => {
@@ -16,12 +16,12 @@ const Dashboard = () => {
                 }}
             >
                 <div>
-                    <Horse /> {/* I'm lime-green, 32px, and bold! */}
-                    <Heart /> {/* Me too! */}
-                    <Cube /> {/* Me three :) */}
-                    <AddressBook />
-                    <AndroidLogo />
-                    <Aperture />
+                    <HorseIcon /> {/* I'm lime-green, 32px, and bold! */}
+                    <HeartIcon /> {/* Me too! */}
+                    <CubeIcon /> {/* Me three :) */}
+                    <AddressBookIcon />
+                    <AndroidLogoIcon />
+                    <ApertureIcon />
                 </div>
             </IconContext.Provider>
             <span>hello world Dashboard </span>

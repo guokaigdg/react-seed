@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {observer, useLocalObservable} from 'mobx-react-lite';
-import {runInAction} from 'mobx';
-import {GetResponsePokemonData} from '@/api/home-two/types/home-two';
-import {GithubLogo} from '@phosphor-icons/react';
-import {fetchPokemon} from '@/api/home-two';
+import React, { useState, useEffect } from 'react';
+import { observer, useLocalObservable } from 'mobx-react-lite';
+import { runInAction } from 'mobx';
+import { GetResponsePokemonData } from '@/api/home-two/types/home-two';
+import { GithubLogoIcon } from '@phosphor-icons/react';
+import { fetchPokemon } from '@/api/home-two';
 import * as styles from './index.module.less';
 
 interface StoreType {
@@ -23,7 +23,7 @@ const About = () => {
                 const res: GetResponsePokemonData = await fetchPokemon({
                     limit: 500
                 });
-                const {results} = res.data;
+                const { results } = res.data;
                 if (results) {
                     setDataState('SUCCESS');
                     runInAction(() => {
@@ -40,7 +40,7 @@ const About = () => {
             }
         }
     }));
-    const {getFetchPokemo, pokemon} = PokemoStore;
+    const { getFetchPokemo, pokemon } = PokemoStore;
 
     useEffect(() => {
         getFetchPokemo();
@@ -50,7 +50,7 @@ const About = () => {
     return (
         <div className={styles.aboutRoot}>
             <a href='https://github.com/guokaigdg/react-enterprise-template'>
-                <GithubLogo size={68} color='#f9f4da' />
+                <GithubLogoIcon size={68} color='#f9f4da' />
             </a>
             <div className={styles.header}> 恭喜开启 less + css modules 模式 </div>
             <p>Hello About</p>

@@ -4,6 +4,15 @@ import {type AxiosInstance, InternalAxiosRequestConfig, AxiosRequestConfig, Axio
 const whiteRetry = new Set(['ECONNABORTED', undefined, 0]);
 // import {baseURL} from '@/utils/variable';
 
+// 日志函数
+const logger = {
+    log: (message: string) => {
+        if (process.env.NODE_ENV === 'development') {
+            console.log(message);
+        }
+    }
+};
+
 // 创建 axios 请求实例
 const serviceAxios = axios.create({
     baseURL: '', // 接口请求地址
@@ -34,11 +43,11 @@ axiosRetry(serviceAxios, {
 // 请求拦截器
 serviceAxios.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-        console.log('全局请求拦截器: 成功');
+        logger.log('全局请求拦截器: 成功');
         return config;
     },
     (err: AxiosError) => {
-        console.log('全局请求拦截器: 处理请求错误');
+        logger.log('全局请求拦截器: 处理请求错误');
         return Promise.reject(err);
     }
 );
@@ -46,11 +55,11 @@ serviceAxios.interceptors.request.use(
 // 响应拦截器
 serviceAxios.interceptors.response.use(
     (response: AxiosResponse) => {
-        console.log('全局响应拦截器: 成功');
+        logger.log('全局响应拦截器: 成功');
         return response;
     },
     (err: AxiosError) => {
-        console.log('全局响应拦截器: 处理响应错误');
+        logger.log('全局响应拦截器: 处理响应错误');
         return Promise.reject(err);
     }
 );

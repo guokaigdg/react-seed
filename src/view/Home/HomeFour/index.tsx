@@ -1,14 +1,14 @@
 import React from 'react';
 import {
     IconContext,
-    Horse,
-    AddressBook,
-    AndroidLogo,
-    Palette,
-    Aperture,
-    Heart,
-    Cube,
-    GithubLogo
+    HorseIcon,
+    AddressBookIcon,
+    AndroidLogoIcon,
+    PaletteIcon,
+    ApertureIcon,
+    HeartIcon,
+    CubeIcon,
+    GithubLogoIcon
 } from '@phosphor-icons/react';
 import './index.less';
 
@@ -24,14 +24,14 @@ const HomeFour = () => {
                 }}
             >
                 <div>
-                    <Horse /> {/* I'm lime-green, 32px, and bold! */}
-                    <Heart /> {/* Me too! */}
-                    <Cube /> {/* Me three :) */}
-                    <AddressBook />
-                    <AndroidLogo />
-                    <Aperture />
-                    <Palette />
-                    <GithubLogo />
+                    <HorseIcon /> {/* I'm lime-green, 32px, and bold! */}
+                    <HeartIcon /> {/* Me too! */}
+                    <CubeIcon /> {/* Me three :) */}
+                    <AddressBookIcon />
+                    <AndroidLogoIcon />
+                    <ApertureIcon />
+                    <PaletteIcon />
+                    <GithubLogoIcon />
                 </div>
             </IconContext.Provider>
         </div>

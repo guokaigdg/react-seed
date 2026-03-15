@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router';
+import {NavLink} from 'react-router-dom';
 import './index.less';
 
 const Tab = () => {
