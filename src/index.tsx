@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {HashRouter} from 'react-router-dom';
+import { HashRouter } from 'react-router';
 // import {basename} from '@/utils/variable';
-import {StoresProvider, stores} from '@/store';
+import { StoresProvider, stores } from '@/store';
 import '@/assets/icons/index';
 import App from './App';
 

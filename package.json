@@ -1,7 +1,7 @@
 {
-    "name": "react-template",
+    "name": "react-seed",
     "version": "1.1.0",
-    "description": "react-template",
+    "description": "An out-of-the-box React enterprise frontend template",
     "main": "index.js",
     "license": "MIT",
     "author": {
@@ -23,7 +23,7 @@
         "ESLint",
         "template"
     ],
-    "homepage": "./react-enterprise-template",
+    "homepage": "./react-seed",
     "scripts": {
         "dev": "npm run start",
         "start": "env-cmd -r .env.json -e development node webpack/server",
@@ -130,8 +130,7 @@
         "mobx-react-lite": "^4.1.0",
         "react": "^19.2.1",
         "react-dom": "^19.2.1",
-        "react-router": "^7.6.1",
-        "react-router-dom": "^7.13.1"
+        "react-router": "^7.6.1"
     },
     "volta": {
         "node": "22.12.0",
