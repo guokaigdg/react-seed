@@ -1,109 +1,42 @@
+// ============================================================
+// 动物森友会 Ultimate — Select (Q弹下拉)
+// ============================================================
+@import url('../../styles/index.less');
+
 .select-root {
     position: relative;
-    top: .5em;
+    top: 0.5em;
     display: inline-block;
     min-width: 250px;
-    padding: 14px 24px 15px;
-    font-weight: 200;
-    font-size: 17px;
+    padding: 12px 24px 13px;
+    color: @ac-text;
+    font-weight: 700;
+    font-size: 16px;
     white-space: nowrap;
     text-align: left;
-    background-color:  #f9f4da;
-    border: 0;
-    border:1px solid #94c1e7;
-    border-style: none;
-    border-radius: 12px;
+    background: linear-gradient(180deg, #fffff8 0%, @ac-item-bg 100%);
+    border: 3px solid @ac-border;
     outline: none;
-    box-shadow: 0 5px 8px -3px rgb(0 0 0);
-    /* 将默认的select选择框样式清除 */
-    appearance:none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    .ac-organic-r(0.6);
+    .ac-inset-gloss-with-depth(@depth-sm);
 
-
-    .select-option {
-        position: absolute;
-        background-color: #f9f4da;
-        transition: 0.3s color ease-in-out;
+    &:hover {
+        border-color: @ac-border-dk;
+        transform: translateY(-1px);
     }
 
-
-    input:focus + label {
-      background: #def;
+    &:focus {
+        border-color: @ac-green;
+        box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%), 0 0 0 3px fade(@ac-green, 20%);
     }
 
-    input {
-      position: absolute;
-      display: inline-block;
-      width: 1px;
-      height: 1px;
-      opacity: 0.01;
+    option {
+        padding: 10px 16px;
+        color: @ac-text;
+        font-weight: 600;
+        background: @ac-item-bg;
     }
-
-    label {
-      position: relative;
-      display:block;
-      height: 2em;
-      padding-right: 3em;
-      padding-left: 1em;
-      line-height: 2em;
-      border-top: .06em solid #d9d9d9;
-      cursor: pointer;
-      transition: 0.3s color ease-in-out;
-
-      &:nth-child(2) {
-        margin-top: 2em;
-        border-top: .06em solid #d9d9d9;
-      }
-    }
-
-    input:checked + label {
-      position: absolute;
-      top: 0;
-      display:block;
-      width: 100%;
-      border-top: none;
-
-      &:nth-child(2) {
-        position: relative;
-        margin-top: 0;
-      }
-    }
-
-    &::after {
-      position: absolute;
-      top: 0.9em;
-      right: 0.8em;
-      border: .3em solid pink;
-      border-color: pink transparent transparent;
-      transition: .4s all ease-in-out;
-      content:"";
-    }
-
-    &.expanded {
-      max-height:15em;
-      padding: 0;
-      background: #fff;
-      border: .06em solid pink;
-      border-radius: .25em;
-      box-shadow: rgb(0 0 0 / 10%) 3px 3px 5px 0;
-
-      label {
-        border-top: .06em solid #d9d9d9;
-
-        &:hover {
-          color: pink;
-        }
-      }
-
-      input:checked + label {
-        color:pink;
-      }
-
-      &::after {
-        top:.55em;
-        transform: rotate(-180deg);
-      }
-    }
-  }
-
-
-
+}

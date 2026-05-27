@@ -6,12 +6,11 @@ const Tab = () => {
     return (
         <div className='tab-root'>
             <div className='tab-wrap'>
-                <NavLink to='home/one'>Home</NavLink>
-                <NavLink to='dashboard'>Dashboard</NavLink>
-                <NavLink to='about'>About</NavLink>
+                <NavLink to='home/one'>Nook Home</NavLink>
+                <NavLink to='dashboard'>Nook Plaza</NavLink>
+                <NavLink to='about'>Island Info</NavLink>
             </div>
         </div>
     );
 };
-
 export default Tab;

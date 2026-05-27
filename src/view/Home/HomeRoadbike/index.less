@@ -1,3 +1,8 @@
+// ============================================================
+// 动物森友会 Ultimate — HomeRoadbike (套件重量查询) 物品对比台
+// ============================================================
+@import url('../../../styles/index.less');
+
 .home-bike {
     display: flex;
     flex: 1;
@@ -9,40 +14,41 @@
     height: 100%;
     padding-left: 50px;
     overflow-y: scroll;
-    color: #f9f4da;
-    background-color: #333;
-    border-radius: 10px;
+    color: @ac-text;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 50% 30%, fade(@ac-mint, 10%) 0%, transparent 40%);
 
     .order-title {
-        height: 100px;
-        margin-top: 100px;
-        color: #f9f4da;
+        height: 80px;
+        margin-top: 60px;
+        color: @ac-text;
         font-weight: 900;
-        font-size: 40px;
+        font-size: 32px;
         text-align: center;
     }
 
     .control-content {
         position: fixed;
-        top: 190px;
+        top: 160px;
         right: 30px;
         z-index: 999;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 150px;
-        padding: 12px;
-        color: #2b2b2b;
-        font-size: 20px;
-        background: #f9f4da;
-        border-radius: 12px;
+        padding: 14px;
+        color: @ac-text;
+        font-weight: 800;
+        font-size: 16px;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3px solid @ac-border;
+        .ac-organic-r(0.6);
+        .ac-inset-gloss-with-depth(@depth-px);
     }
 
     .logo-root {
         display: flex;
         height: 70px;
-        background-color: #fff;
 
         .logo-shimano {
             width: 100px;
@@ -57,8 +63,9 @@
 
         .select-wrap {
             height: 80px;
+
             .select-root {
-              font-weight: 500;
+                font-weight: 700;
             }
         }
     }
@@ -68,17 +75,20 @@
         justify-content: center;
         width: 250px;
         height: 100%;
-        background-color: #f0f5e5;
-        border-radius: 12px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3px solid @ac-border;
+        .ac-organic-r(0.6);
+        .ac-physical-depth(@depth-sm);
 
         .img-icon {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 20px;
         }
 
         .img-icon-sram {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 20px;
         }
     }
 
@@ -86,7 +96,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 24px;
 
         .bike-item {
             position: relative;
@@ -94,33 +104,40 @@
             align-items: center;
             justify-content: center;
             width: 150px;
-            height: 30px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            height: 34px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            background: fade(@ac-item-bg, 70%);
+            border: 2px solid transparent;
+            .ac-organic-r(0.35);
+            transition: all 0.3s ease;
 
             .name {
                 position: absolute;
-                left: -150px;
-                color: #9ea0a5;
-                font-weight: 700;
-                font-size: 18px;
+                left: -160px;
+                color: @ac-text-sub;
+                font-weight: 800;
+                font-size: 15px;
             }
 
             .weight {
+                color: @ac-text;
             }
 
             .difference {
                 position: absolute;
                 right: -150px;
-                color: #f9f4da;
-                font-weight: 600;
+                color: @ac-text;
+                font-weight: 700;
             }
         }
 
         .win-weight {
-            color: #0c0c0c;
-            background-color: #a9d44d;
+            color: darken(@ac-green, 20%);
+            background: linear-gradient(90deg, @ac-mint 0%, lighten(@ac-mint, 5%) 100%);
+            border: 2.5px solid @ac-green;
+            .ac-organic-r(0.35);
+            .ac-physical-depth-color(3px, darken(@ac-green, 15%));
         }
     }
 }

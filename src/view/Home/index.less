@@ -1,82 +1,112 @@
+// ============================================================
+// 动物森友会 Ultimate — Home 布局 + 底部 Dock 背包栏
+// Dock = 物品栏格子: 内嵌光泽 slot + 物理厚度
+// ============================================================
+@import url('../../styles/index.less');
+
 .home-root {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    padding-top: 80px; /* 为顶部导航栏留出空间 */
-    background-image: url('@/assets/images/bgp.png');
+    padding-top: 72px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 15% 85%, fade(@ac-mint, 15%) 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, fade(@ac-blue, 12%) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, fade(@ac-yellow, 8%) 0%, transparent 60%);
 
     &-no-bg {
-        background-image: none;
+        background: @ac-bg;
+        background-image: radial-gradient(circle at 30% 70%, fade(@ac-mint, 10%) 0%, transparent 40%),
+            radial-gradient(circle at 70% 30%, fade(@ac-pink, 8%) 0%, transparent 40%);
     }
 
-    /* Dock bar */
+    // ============================================================
+    // Dock 栏 — 背包格子
+    // ============================================================
     .home-dock {
         position: fixed;
-        bottom: 20px;
+        bottom: 24px;
         left: 50%;
-        transform: translateX(-50%);
         z-index: 1000;
+        transform: translateX(-50%);
+        animation: ac-dock-up 0.5s @ac-bounce;
 
         .dock-items {
             display: flex;
             align-items: center;
-            padding: 10px 32px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 8px 20px;
+            background: linear-gradient(180deg, fade(#fff, 95%) 0%, fade(@ac-item-bg, 92%) 100%);
+            border: 3px solid @ac-border;
+            .ac-organic-r(0.7);
+            .ac-inset-gloss-with-depth(@depth-px);
 
             .dock-item {
                 position: relative;
-                margin: 0 4px;
-                transition: transform 0.2s ease;
+                margin: 0 2px;
+                transition: all 0.3s @ac-bounce;
 
                 &:hover {
-                    transform: translateY(-3px) scale(1.1);
+                    z-index: 10;
+                    transform: translateY(-6px) scale(1.15);
                 }
 
+                // GitHub 分隔区
                 &.github-dock {
-                    margin-right: 12px;
+                    margin-right: 10px;
                     padding-right: 12px;
-                    border-right: 1px solid rgba(255, 255, 255, 0.2);
+                    border-right: 2.5px solid fade(@ac-border, 40%);
 
                     .dock-link {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        padding: 8px;
-                        color: #f9f4da;
-                        transition: all 0.2s ease;
+                        width: 44px;
+                        height: 44px;
+                        color: @ac-text-sub;
+                        background: fade(@ac-mint, 30%);
+                        border: 2.5px solid fade(@ac-border, 40%);
+                        transition: all 0.3s @ac-bounce;
+                        .ac-organic-r-sm();
+                        .ac-inset-gloss();
 
                         &:hover {
-                            transform: scale(1.1);
+                            color: @ac-text;
+                            background: @ac-mint;
+                            border-color: @ac-border;
                         }
                     }
                 }
 
+                // 物品格子 — 每个slot有内嵌光泽
                 .dock-btn {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 50px;
-                    height: 50px;
+                    width: 46px;
+                    height: 46px;
                     padding: 0;
-                    color: #f9f4da;
-                    background: transparent;
-                    border: none;
-                    border-radius: 15px;
-                    transition: all 0.2s ease;
+                    color: @ac-text-sub;
+                    background: @ac-item-bg;
+                    border: 2.5px solid fade(@ac-border, 30%);
+                    transition: all 0.3s @ac-bounce;
+                    .ac-organic-r-sm();
+                    .ac-inset-gloss();
 
                     &:hover {
-                        background: rgba(255, 255, 255, 0.15);
+                        color: @ac-text;
+                        background: #fff;
+                        border-color: @ac-border;
                     }
 
+                    // 选中态 — 叶子绿 slot
                     &.cp-btn-active {
-                        color: #fcba28;
-                        background: rgba(252, 186, 40, 0.1);
+                        color: #fff;
+                        background: linear-gradient(180deg, @ac-green 0%, @ac-green-dk 100%);
+                        border: 2.5px solid darken(@ac-green-dk, 8%);
+                        box-shadow: inset 0 2px 0 rgb(255 255 255 / 25%), 0 3px 0 darken(@ac-green-dk, 18%);
+                        .ac-organic-r-sm();
                     }
 
                     .link-text {
@@ -86,53 +116,37 @@
             }
         }
 
-        /* Light theme for home/two */
+        // 浅色主题 (Pokemon页面)
         &.home-dock-light {
             .dock-items {
-                background: rgb(158 157 157 / 20%);
-                // backdrop-filter: blur(10px);
-                // -webkit-backdrop-filter: blur(10px);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-
-                .dock-item {
-                    &.github-dock {
-                        border-right: 1px solid rgba(0, 0, 0, 0.2);
-
-                        .dock-link {
-                            color: #333;
-                        }
-                    }
-
-                    .dock-btn {
-                        color: #333;
-
-                        &:hover {
-                            background: rgba(0, 0, 0, 0.1);
-                        }
-
-                        &.cp-btn-active {
-                            color: #fcba28;
-                            background: rgba(252, 186, 40, 0.2);
-                        }
-                    }
-                }
+                background: linear-gradient(180deg, fade(#fff, 96%) 0%, fade(@ac-item-bg, 95%) 100%);
             }
         }
     }
 }
 
-/* Responsive adjustments */
+@keyframes ac-dock-up {
+    from {
+        transform: translateX(-50%) translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .home-root {
         .home-dock {
             .dock-items {
                 padding: 6px 12px;
 
-                .dock-item {
-                    .dock-btn {
-                        width: 40px;
-                        height: 40px;
-                    }
+                .dock-item .dock-btn {
+                    width: 38px;
+                    height: 38px;
                 }
             }
         }

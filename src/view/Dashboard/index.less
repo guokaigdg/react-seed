@@ -1,13 +1,251 @@
-.dashboard-root {
-    padding-top: 70px;
-    text-align: center;
-    background: #222;
+/* ============================================================
+   动物森友会 Ultimate — Dashboard (Nook广场)
+   日期时间HUD + 物品栏格子(inset gloss) + NPC对话框
+   ============================================================ */
+@import url('../../styles/index.less');
 
-    & > span {
-        display: block;
-        width: 100%;
-        color: rgb(96 96 96);
-        font-weight: 800;
-        font-size: 110px;
+.dashboard-root {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 72px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 25% 25%, fade(@ac-mint, 15%) 0%, transparent 35%),
+        radial-gradient(circle at 75% 75%, fade(@ac-blue, 12%) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, fade(@ac-yellow, 8%) 0%, transparent 50%);
+
+    /* 日期时间组件 — 动森经典 HUD */
+    .ac-datetime {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        padding: 16px 36px;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3px solid @ac-border;
+        animation: ac-fade-up 0.5s ease-out;
+        .ac-organic-r(0.7);
+        .ac-inset-gloss-with-depth(@depth-px);
+
+        .ac-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 24px;
+            border-right: 3px solid fade(@ac-border, 35%);
+
+            .ac-weekday {
+                color: @ac-green;
+                font-weight: 900;
+                font-size: 14px;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+            }
+
+            .ac-monthday {
+                color: @ac-text;
+                font-weight: 800;
+                font-size: 22px;
+            }
+        }
+
+        .ac-time {
+            display: flex;
+            align-items: center;
+            color: @ac-text;
+            font-weight: 900;
+            font-size: 48px;
+            letter-spacing: 2px;
+
+            .ac-colon {
+                position: relative;
+                top: -0.08em;
+                margin: 0 1px;
+                animation: blink 1s step-end infinite;
+            }
+        }
+    }
+
+    /* 物品栏/背包格子 — 动森核心UI (inset gloss slot) */
+    .ac-inventory {
+        animation: ac-fade-up 0.6s ease-out 0.1s both;
+
+        .ac-inventory-title {
+            margin-bottom: 12px;
+            color: @ac-text-sub;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .ac-inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            padding: 16px;
+            background: linear-gradient(180deg, fade(#fff, 92%) 0%, fade(@ac-item-bg, 88%) 100%);
+            border: 3px solid @ac-border;
+            .ac-organic-r(0.6);
+            .ac-inset-gloss-with-depth(@depth-px);
+
+            /* 每个格子 slot: 2.5px 内描边 + 非对称圆角 */
+            .ac-inv-slot {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 68px;
+                height: 68px;
+                background: @ac-item-bg;
+                border: 2.5px solid fade(@ac-border, 35%);
+                /* inset 2px 光泽 (模拟塑料注塑高光) */
+                box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%), inset 0 -1px 0 rgb(0 0 0 / 4%);
+                cursor: pointer;
+                transition: all 0.3s @ac-bounce;
+                .ac-organic-r-sm();
+
+                &:hover {
+                    border-color: @ac-green;
+                    box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%), 0 4px 0 @ac-depth;
+                    transform: translateY(-3px) scale(1.08);
+                }
+
+                /* 有物品的格子 — 薄荷背景 */
+                &.has-item {
+                    background: linear-gradient(180deg, #fff 0%, @ac-mint 100%);
+                    border-color: fade(@ac-green, 40%);
+
+                    .ac-inv-icon {
+                        color: @ac-text-sub;
+                        transition: all 0.3s @ac-bounce;
+                    }
+
+                    &:hover .ac-inv-icon {
+                        color: @ac-green;
+                        transform: scale(1.1) rotate(-5deg);
+                    }
+                }
+
+                /* 随机偏转 — 模拟手工放置感 */
+                &:nth-child(1) {
+                    transform: rotate(-0.5deg);
+                }
+
+                &:nth-child(2) {
+                    transform: rotate(0.8deg);
+                }
+
+                &:nth-child(3) {
+                    transform: rotate(-0.3deg);
+                }
+
+                &:nth-child(4) {
+                    transform: rotate(0.6deg);
+                }
+
+                &:nth-child(5) {
+                    transform: rotate(-0.7deg);
+                }
+
+                &:nth-child(6) {
+                    transform: rotate(0.4deg);
+                }
+
+                &:nth-child(7) {
+                    transform: rotate(-0.9deg);
+                }
+
+                &:nth-child(8) {
+                    transform: rotate(0.2deg);
+                }
+
+                &:nth-child(9) {
+                    transform: rotate(0.5deg);
+                }
+
+                &:nth-child(10) {
+                    transform: rotate(-0.6deg);
+                }
+            }
+        }
+    }
+
+    /* NPC 对话框 — 非对称圆角 + 物理厚度 */
+    .ac-dialog {
+        position: relative;
+        max-width: 520px;
+        animation: ac-fade-up 0.7s ease-out 0.2s both;
+
+        .ac-dialog-box {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px 28px;
+            background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+            border: 3px solid @ac-border;
+            .ac-organic-r();
+            .ac-inset-gloss-with-depth(@depth-px);
+
+            /* NPC 头像 */
+            .ac-dialog-avatar {
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: center;
+                width: 52px;
+                height: 52px;
+                color: #fff;
+                font-weight: 900;
+                font-size: 24px;
+                background: linear-gradient(135deg, @ac-green 0%, @ac-green-dk 100%);
+                border: 3px solid darken(@ac-green-dk, 8%);
+                border-radius: 50%;
+                .ac-physical-depth-color(4px, darken(@ac-green-dk, 18%));
+            }
+
+            .ac-dialog-content {
+                .ac-dialog-name {
+                    margin-bottom: 4px;
+                    color: @ac-green;
+                    font-weight: 900;
+                    font-size: 16px;
+                }
+
+                .ac-dialog-text {
+                    color: @ac-text;
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 1.6;
+                }
+            }
+        }
+
+        /* 底部小箭头 */
+        .ac-dialog-arrow {
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-top: 14px solid @ac-border;
+            border-right: 14px solid transparent;
+            border-left: 14px solid transparent;
+            transform: translateX(-50%);
+            animation: ac-arrow-bounce 2s ease-in-out infinite;
+        }
+    }
+
+    @keyframes ac-arrow-bounce {
+        0%,
+        100% {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(4px);
+        }
     }
 }

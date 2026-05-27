@@ -7257,6 +7257,11 @@ postcss-less@^3.1.0:
   dependencies:
     postcss "^7.0.14"
 
+postcss-less@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmmirror.com/postcss-less/-/postcss-less-6.0.0.tgz"
+  integrity sha512-FPX16mQLyEjLzEuuJtxA8X3ejDLNGGEG503d2YGZR5Ask1SpDN8KmZUMpzCvyalWRywAn1n1VOA5dcqfCLo5rg==
+
 postcss-loader@^7.3.0:
   version "7.3.0"
   resolved "https://registry.npmmirror.com/postcss-loader/-/postcss-loader-7.3.0.tgz"
@@ -7689,7 +7694,7 @@ postcss@^5.2.17:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-"postcss@^7.0.0 || ^8.0.1", postcss@^8, postcss@^8.0.0, postcss@^8.0.3, postcss@^8.0.9, postcss@^8.1.0, postcss@^8.1.4, postcss@^8.2, postcss@^8.2.15, postcss@^8.2.2, postcss@^8.3.3, postcss@^8.4, postcss@^8.4.17, postcss@^8.4.19, postcss@^8.4.20, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.6, "postcss@>= 8", postcss@>=5.0.0, postcss@>=8, "postcss@>4 <9":
+"postcss@^7.0.0 || ^8.0.1", postcss@^8, postcss@^8.0.0, postcss@^8.0.3, postcss@^8.0.9, postcss@^8.1.0, postcss@^8.1.4, postcss@^8.2, postcss@^8.2.15, postcss@^8.2.2, postcss@^8.3.3, postcss@^8.3.5, postcss@^8.4, postcss@^8.4.17, postcss@^8.4.19, postcss@^8.4.20, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.6, "postcss@>= 8", postcss@>=5.0.0, postcss@>=8, "postcss@>4 <9":
   version "8.4.23"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.23.tgz"
   integrity sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==
@@ -7698,7 +7703,7 @@ postcss@^5.2.17:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@^7.0.0, postcss@^7.0.13, postcss@^7.0.2, postcss@^7.0.26, postcss@^7.0.32:
+postcss@^7.0.0, postcss@^7.0.13, postcss@^7.0.14, postcss@^7.0.2, postcss@^7.0.26, postcss@^7.0.32:
   version "7.0.39"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-7.0.39.tgz"
   integrity sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==
@@ -7707,14 +7712,6 @@ postcss@^7.0.0, postcss@^7.0.13, postcss@^7.0.2, postcss@^7.0.26, postcss@^7.0.3
     source-map "^0.6.1"
 
 postcss@^7.0.1:
-  version "7.0.39"
-  resolved "https://registry.npmmirror.com/postcss/-/postcss-7.0.39.tgz"
-  integrity sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==
-  dependencies:
-    picocolors "^0.2.1"
-    source-map "^0.6.1"
-
-postcss@^7.0.14:
   version "7.0.39"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-7.0.39.tgz"
   integrity sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==

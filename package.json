@@ -30,7 +30,7 @@
         "build:qa": "env-cmd -r .env.json -e qa webpack --config ./webpack/config/webpack.prod.js",
         "build:prod": "env-cmd -r .env.json -e production webpack --config ./webpack/config/webpack.prod.js",
         "clean": "rm -rf node_modules",
-         "deploy": "npm run build:prod && gh-pages -d build"
+        "deploy": "npm run build:prod && gh-pages -d build"
     },
     "engines": {
         "node": ">= 16.0.0",
@@ -101,6 +101,7 @@
         "mini-css-extract-plugin": "^2.7.5",
         "postcss": "^8.4.23",
         "postcss-flexbugs-fixes": "^5.0.2",
+        "postcss-less": "^6.0.0",
         "postcss-loader": "^7.3.0",
         "postcss-normalize": "^10.0.1",
         "postcss-preset-env": "^8.3.2",

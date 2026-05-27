@@ -9,8 +9,6 @@ interface StoreType {
     pokemon: string;
     getFetchPokemo: () => void;
 }
-// FSM模式: 有限状态机
-// 有限状态机（Finite-state machine,FSM），又称有限状态自动机，简称状态机，表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型
 type DataStateType = 'LOADING' | 'SUCCESS' | 'ERROR';
 
 const About = () => {
@@ -49,13 +47,29 @@ const About = () => {
 
     return (
         <div className='about-root'>
-            <a href='https://github.com/guokaigdg/react-seed'>
-                <GithubLogo size={68} color='#f9f4da' />
-            </a>
-            <p>Hello About</p>
-            {dataState === 'LOADING' && <div>LOADING</div>}
-            {dataState === 'SUCCESS' && <div>SUCCESS {pokemon}</div>}
-            {dataState === 'ERROR' && <div>ERROR {pokemon}</div>}
+            {/* 玩家护照/头像卡片 - 动森核心UI */}
+            <div className='ac-passport'>
+                <div className='ac-passport-header'>Island Passport</div>
+                <div className='ac-passport-body'>
+                    <div className='ac-avatar'>
+                        <div className='ac-avatar-circle'>
+                            <GithubLogo size={48} color='#5D4037' />
+                        </div>
+                    </div>
+                    <div className='ac-passport-info'>
+                        <div className='ac-passport-name'>guokaigdg</div>
+                        <div className='ac-passport-title'>Island Representative</div>
+                        <div className='ac-passport-status'>
+                            {dataState === 'LOADING' && <span className='ac-status loading'>Loading...</span>}
+                            {dataState === 'SUCCESS' && <span className='ac-status success'>{pokemon} Connected</span>}
+                            {dataState === 'ERROR' && <span className='ac-status error'>Disconnected</span>}
+                        </div>
+                    </div>
+                </div>
+                <a className='ac-passport-link' href='https://github.com/guokaigdg/react-seed'>
+                    Visit Island GitHub
+                </a>
+            </div>
         </div>
     );
 };

@@ -1,20 +1,31 @@
+// ============================================================
+// 动物森友会 Ultimate — HomeIcon (SVG图标展示)
+// ============================================================
+@import url('../../../styles/index.less');
+
 .home-icon-root {
     display: flex;
     flex: 1;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     font-size: 50px;
-    background: rgb(49 51 56);
-    border-radius: 10px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 60% 30%, fade(@ac-blue, 14%) 0%, transparent 40%);
 
     .about-img {
-        width: 600px;;
+        width: 480px;
+        padding: 16px;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3px solid @ac-border;
+        .ac-organic-r(0.6);
+        .ac-physical-depth(@depth-px);
     }
 
-    .icon-top{
-        width: 700px;
+    .icon-top {
+        width: 550px;
     }
 
     .icon-my {

@@ -1,36 +1,81 @@
+// ============================================================
+// 动物森友会 Ultimate — Button (Q弹塑料按钮)
+// 非对称圆角 + 物理厚度 + 内嵌光泽 + 弹性按压
+// 阴影策略: border-bottom 做物理厚度，box-shadow 仅做 inset 光泽
+// ============================================================
+@import url('../../styles/index.less');
+
 .cp-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
-    color: #7a7a7b;
-    font-weight: 600;
-    font-size: 18px;
-    background-color: #323232;
-    border: 0;
-    border-radius: 10px;
+    padding: 10px 28px;
+    color: @ac-text;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    background: linear-gradient(180deg, #fffff8 0%, @ac-item-bg 100%);
+    border: 3px solid @ac-border;
+    border-bottom: (@depth-px) solid @ac-depth;
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%);
     cursor: pointer;
-    transition: .2s;
+    transition: all 0.3s @ac-bounce;
+    user-select: none;
+    .ac-organic-r(0.7);
 
     &:hover {
-        color: #fcba28;
-        background-color: #323232;
+        color: @ac-text;
+        background: linear-gradient(180deg, #fff 0%, #f5f3ea 100%);
+        border-color: @ac-border-dk;
+        border-bottom-color: @ac-depth-dk;
+        border-bottom-width: (@depth-px + 2px);
+        box-shadow: inset 0 2px 0 rgb(255 255 255 / 70%);
+        transform: translateY(-3px) scale(1.03);
+    }
+
+    // 按压: 下沉4px，厚度消失，瞬弹
+    &:active {
+        border-bottom-width: 3px;
+        box-shadow: inset 0 2px 0 rgb(255 255 255 / 40%);
+        transform: translateY(@ac-press-down) scale(0.97);
+        transition-duration: 0.08s;
+    }
+}
+
+// 文字型按钮 (dock中使用)
+.cp-text {
+    padding: 6px 12px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-bottom-width: 2px;
+    box-shadow: none;
+
+    &:hover {
+        background: fade(@ac-mint, 50%);
+        border-color: fade(@ac-border, 50%);
+        border-bottom-width: 2px;
+        box-shadow: none;
     }
 
     &:active {
-        color: #fcba28;
-        background-color: #323232;
+        border-bottom-width: 2px;
+        box-shadow: none;
     }
-
 }
 
-.cp-text {
-    background-color:transparent;
-}
-
+// 激活态 - 叶子绿
 .cp-btn-active {
-    color: #fcba28;
-    background-color: #323232;
-    border-radius: 10px;
-}
+    color: #fff;
+    background: linear-gradient(180deg, @ac-green 0%, @ac-green-dk 100%);
+    border: 3px solid darken(@ac-green-dk, 8%);
+    border-bottom: @depth-px solid darken(@ac-green-dk, 18%);
+    .ac-organic-r(0.7);
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 25%);
 
+    &:hover {
+        color: #fff;
+        background: linear-gradient(180deg, lighten(@ac-green, 5%) 0%, @ac-green 100%);
+        border-color: darken(@ac-green-dk, 8%);
+        border-bottom-color: darken(@ac-green-dk, 18%);
+    }
+}

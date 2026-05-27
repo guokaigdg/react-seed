@@ -1,91 +1,129 @@
+// ============================================================
+// 动物森友会 Ultimate — HomeTwo (Pokemon) 博物馆展品风格
+// ============================================================
+@import url('../../../styles/index.less');
+
 .home-two-root {
     display: flex;
     flex: 1;
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
-    background: rgb(49 51 56);
-    border-radius: 10px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 80% 20%, fade(@ac-blue, 16%) 0%, transparent 40%);
+    border-radius: 0;
 
+    // 搜索栏 — 非对称圆角输入
     .search-wrap {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: auto;
         height: 80px;
         padding: 20px;
 
         .input {
-            width: 300px;
-            height: 40px;
-            padding: 0 15px;
+            width: 320px;
+            height: 46px;
+            padding: 0 20px;
+            color: @ac-text;
+            font-weight: 600;
             text-align: left;
-            border: 2px solid transparent;
-            border-radius: 6px;
+            background: #fff;
+            border: 3px solid @ac-border;
+            .ac-organic-r(0.55);
             outline: none;
-            transition: border-color 0.3s;
+            box-shadow: inset 0 2px 0 rgb(255 255 255 / 40%), inset 0 -1px 0 rgb(0 0 0 / 3%);
+            transition: all 0.3s ease;
 
             &:focus {
-                border-color: #4a9eff;
+                border-color: @ac-green;
+                box-shadow: inset 0 2px 0 rgb(255 255 255 / 40%), 0 0 0 3px fade(@ac-green, 20%);
             }
 
             &::placeholder {
-                color: #999;
+                color: @ac-border-dk;
+                font-weight: 500;
             }
         }
 
         .search-btn {
-            height: 40px;
-            margin-left: 10px;
+            height: 46px;
+            margin-left: 12px;
             color: #fff;
-            background-color: #fcba28;
+            background: linear-gradient(180deg, @ac-green 0%, @ac-green-dk 100%);
+            border-color: darken(@ac-green-dk, 8%);
         }
     }
 
     .search-result-info {
-        padding: 10px 20px;
-        color: #fff;
-        font-size: 14px;
+        padding: 8px 20px;
+        color: @ac-text-sub;
+        font-weight: 700;
+        font-size: 15px;
         text-align: center;
     }
 
-    // 宝可梦详情弹窗
+    // 详情弹窗 — 非对称圆角 + 物理厚度
     .pokemon-detail-modal {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 1000;
+        z-index: 2000;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: fade(@ac-text, 40%);
+        backdrop-filter: blur(6px);
 
         .pokemon-detail-content {
             position: relative;
             width: 90%;
-            max-width: 500px;
+            max-width: 480px;
             max-height: 80vh;
             overflow-y: auto;
-            background: #fff;
-            border-radius: 15px;
+            background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+            border: 3.5px solid @ac-border;
+            .ac-organic-r();
+            .ac-inset-gloss-with-depth(@depth-lg);
+            animation: ac-bounce-in 0.4s @ac-bounce;
+
+            // 底部小箭头
+            &::after {
+                position: absolute;
+                bottom: -16px;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border-top: 14px solid @ac-border;
+                border-right: 14px solid transparent;
+                border-left: 14px solid transparent;
+                transform: translateX(-50%);
+                content: '';
+            }
 
             .close-btn {
                 position: absolute;
-                top: 10px;
-                right: 15px;
-                width: 30px;
-                height: 30px;
-                color: #d0c6c6;
-                font-size: 24px;
-                background: none;
-                border: none;
+                top: 12px;
+                right: 16px;
+                z-index: 10;
+                width: 36px;
+                height: 36px;
+                color: #fff;
+                font-weight: 900;
+                font-size: 20px;
+                line-height: 30px;
+                text-align: center;
+                background: linear-gradient(180deg, @ac-orange 0%, darken(@ac-orange, 10%) 100%);
+                border: 2.5px solid darken(@ac-orange, 18%);
+                border-radius: 50%;
                 cursor: pointer;
-                transition: color 0.3s;
+                transition: all 0.2s @ac-bounce;
+                .ac-physical-depth-color(3px, darken(@ac-orange, 22%));
 
                 &:hover {
-                    color: #333;
+                    transform: scale(1.15) rotate(90deg);
                 }
             }
 
@@ -94,63 +132,127 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 30px 20px 20px;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                border-radius: 15px 15px 0 0;
+                background: linear-gradient(135deg, @ac-mint 0%, fade(@ac-blue, 60%) 100%);
+                border-radius: 36px 32px 0 0 / 34px 40px 0 0;
 
                 .detail-image {
-                    width: 150px;
-                    height: 150px;
+                    width: 140px;
+                    height: 140px;
+                    padding: 10px;
                     object-fit: contain;
+                    background: fade(#fff, 50%);
+                    border: 3px solid fade(@ac-border, 35%);
+                    .ac-organic-r(0.55);
+                    animation: ac-float 3s ease-in-out infinite;
                 }
 
                 .detail-info {
-                    margin-top: 15px;
+                    margin-top: 12px;
                     text-align: center;
 
                     h2 {
-                        margin: 0;
-                        color: #fff;
-                        font-size: 24px;
+                        color: @ac-text;
+                        font-weight: 900;
+                        font-size: 22px;
                         text-transform: capitalize;
 
                         .pokemon-id {
-                            color: rgba(255, 255, 255, 0.8);
-                            font-size: 18px;
+                            color: @ac-text-sub;
+                            font-size: 16px;
                         }
                     }
 
                     .types {
                         display: flex;
-                        gap: 10px;
+                        gap: 8px;
                         justify-content: center;
-                        margin-top: 10px;
+                        margin-top: 8px;
 
                         .type-badge {
-                            padding: 5px 15px;
+                            padding: 4px 14px;
                             color: #fff;
-                            font-size: 12px;
+                            font-weight: 800;
+                            font-size: 11px;
+                            letter-spacing: 0.5px;
                             text-transform: uppercase;
+                            border: 2px solid fade(#000, 15%);
                             border-radius: 20px;
 
-                            // 宝可梦类型颜色
-                            &.normal { background: #a8a878; }
-                            &.fire { background: #f08030; }
-                            &.water { background: #6890f0; }
-                            &.electric { background: #f8d030; }
-                            &.grass { background: #78c850; }
-                            &.ice { background: #98d8d8; }
-                            &.fighting { background: #c03028; }
-                            &.poison { background: #a040a0; }
-                            &.ground { background: #e0c068; }
-                            &.flying { background: #a890f0; }
-                            &.psychic { background: #f85888; }
-                            &.bug { background: #a8b820; }
-                            &.rock { background: #b8a038; }
-                            &.ghost { background: #705898; }
-                            &.dragon { background: #7038f8; }
-                            &.dark { background: #705848; }
-                            &.steel { background: #b8b8d0; }
-                            &.fairy { background: #ee99ac; }
+                            &.normal {
+                                background: #a8a878;
+                            }
+
+                            &.fire {
+                                background: #f08030;
+                            }
+
+                            &.water {
+                                background: #6890f0;
+                            }
+
+                            &.electric {
+                                color: @ac-text;
+                                background: #f8d030;
+                            }
+
+                            &.grass {
+                                background: #78c850;
+                            }
+
+                            &.ice {
+                                color: @ac-text;
+                                background: #98d8d8;
+                            }
+
+                            &.fighting {
+                                background: #c03028;
+                            }
+
+                            &.poison {
+                                background: #a040a0;
+                            }
+
+                            &.ground {
+                                color: @ac-text;
+                                background: #e0c068;
+                            }
+
+                            &.flying {
+                                background: #a890f0;
+                            }
+
+                            &.psychic {
+                                background: #f85888;
+                            }
+
+                            &.bug {
+                                background: #a8b820;
+                            }
+
+                            &.rock {
+                                background: #b8a038;
+                            }
+
+                            &.ghost {
+                                background: #705898;
+                            }
+
+                            &.dragon {
+                                background: #7038f8;
+                            }
+
+                            &.dark {
+                                background: #705848;
+                            }
+
+                            &.steel {
+                                color: @ac-text;
+                                background: #b8b8d0;
+                            }
+
+                            &.fairy {
+                                background: #ee99ac;
+                            }
                         }
                     }
                 }
@@ -163,15 +265,18 @@
                     display: flex;
                     align-items: center;
                     margin-bottom: 10px;
+                    padding: 6px 0;
+                    border-bottom: 2px dashed fade(@ac-border, 30%);
 
                     .label {
                         width: 60px;
-                        color: #666;
-                        font-weight: bold;
+                        color: @ac-text-sub;
+                        font-weight: 800;
                     }
 
                     .value {
-                        color: #333;
+                        color: @ac-text;
+                        font-weight: 700;
                     }
                 }
 
@@ -179,42 +284,45 @@
                     margin-top: 20px;
 
                     h3 {
-                        margin-bottom: 15px;
-                        color: #333;
+                        margin-bottom: 12px;
+                        color: @ac-text;
+                        font-weight: 800;
                     }
 
                     .stat-bar {
                         display: flex;
                         align-items: center;
-                        margin-bottom: 10px;
+                        margin-bottom: 8px;
 
                         .stat-name {
                             width: 100px;
-                            color: #666;
-                            font-size: 12px;
+                            color: @ac-text-sub;
+                            font-weight: 700;
+                            font-size: 11px;
                             text-transform: uppercase;
                         }
 
                         .stat-progress {
                             flex: 1;
-                            height: 8px;
-                            background: #e0e0e0;
-                            border-radius: 4px;
+                            height: 14px;
                             overflow: hidden;
+                            background: @ac-item-bg;
+                            border: 2px solid @ac-border;
+                            border-radius: 10px;
 
                             .stat-fill {
                                 height: 100%;
-                                background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-                                border-radius: 4px;
-                                transition: width 0.5s ease;
+                                background: linear-gradient(90deg, @ac-green 0%, @ac-green-dk 100%);
+                                border-radius: 8px;
+                                transition: width 0.6s @ac-bounce;
                             }
                         }
 
                         .stat-value {
                             width: 40px;
                             margin-left: 10px;
-                            color: #333;
-                            font-weight: bold;
+                            color: @ac-text;
+                            font-weight: 800;
                             text-align: right;
                         }
                     }
@@ -223,83 +331,162 @@
         }
     }
 
+    // Pokemon 列表
     .list-root {
         display: flex;
         flex: 1;
         flex-direction: column;
-        padding: 5px;
+        padding: 10px 20px;
         overflow-y: scroll;
 
         .pokemon-list {
             display: flex;
             flex-wrap: wrap;
+            gap: 16px;
             justify-content: center;
         }
 
+        // 宝可梦卡片 — 物品展示格子 + 随机偏转
         .pokemon-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            width: 300px;
+            width: 240px;
             height: 220px;
-            margin: 8px;
-            color: #383a3a;
-            font-size: 24px;
-            background-color: rgb(255 255 255);
-            border-radius: 10px;
+            color: @ac-text;
+            font-weight: 700;
+            font-size: 18px;
+            background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+            border: 3px solid @ac-border;
+            .ac-organic-r(0.6);
             cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+            transition: all 0.3s @ac-bounce;
+            .ac-inset-gloss-with-depth(@depth-px);
+
+            // 随机偏转 — 手工放置感
+            &:nth-child(3n + 1) {
+                transform: rotate(-0.4deg);
+            }
+
+            &:nth-child(3n + 2) {
+                transform: rotate(0.6deg);
+            }
+
+            &:nth-child(3n) {
+                transform: rotate(-0.8deg);
+            }
 
             &:hover {
-                transform: scale(1.03);
-                opacity: 0.9;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                border-color: @ac-green;
+                border-bottom-width: (@depth-px + 2px);
+                box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%);
+                transform: translateY(-6px) scale(1.03) rotate(0deg);
             }
 
             .img {
                 width: 100px;
                 height: 100px;
-                margin: 10px;
+                margin: 8px;
+                padding: 8px;
                 object-fit: contain;
+                background: fade(@ac-mint, 30%);
+                border: 2px solid fade(@ac-border, 25%);
+                .ac-organic-r-sm();
             }
 
             .pokemon-name {
+                font-weight: 800;
                 text-transform: capitalize;
             }
 
             .pokemon-types {
                 display: flex;
                 gap: 5px;
-                margin-top: 8px;
+                margin-top: 6px;
 
                 .mini-type {
-                    padding: 3px 10px;
+                    padding: 2px 10px;
                     color: #fff;
+                    font-weight: 800;
                     font-size: 10px;
                     text-transform: uppercase;
+                    border: 1.5px solid fade(#000, 12%);
                     border-radius: 10px;
 
-                    // 宝可梦类型颜色
-                    &.normal { background: #a8a878; }
-                    &.fire { background: #f08030; }
-                    &.water { background: #6890f0; }
-                    &.electric { background: #f8d030; }
-                    &.grass { background: #78c850; }
-                    &.ice { background: #98d8d8; }
-                    &.fighting { background: #c03028; }
-                    &.poison { background: #a040a0; }
-                    &.ground { background: #e0c068; }
-                    &.flying { background: #a890f0; }
-                    &.psychic { background: #f85888; }
-                    &.bug { background: #a8b820; }
-                    &.rock { background: #b8a038; }
-                    &.ghost { background: #705898; }
-                    &.dragon { background: #7038f8; }
-                    &.dark { background: #705848; }
-                    &.steel { background: #b8b8d0; }
-                    &.fairy { background: #ee99ac; }
+                    &.normal {
+                        background: #a8a878;
+                    }
+
+                    &.fire {
+                        background: #f08030;
+                    }
+
+                    &.water {
+                        background: #6890f0;
+                    }
+
+                    &.electric {
+                        color: @ac-text;
+                        background: #f8d030;
+                    }
+
+                    &.grass {
+                        background: #78c850;
+                    }
+
+                    &.ice {
+                        background: #98d8d8;
+                    }
+
+                    &.fighting {
+                        background: #c03028;
+                    }
+
+                    &.poison {
+                        background: #a040a0;
+                    }
+
+                    &.ground {
+                        background: #e0c068;
+                    }
+
+                    &.flying {
+                        background: #a890f0;
+                    }
+
+                    &.psychic {
+                        background: #f85888;
+                    }
+
+                    &.bug {
+                        background: #a8b820;
+                    }
+
+                    &.rock {
+                        background: #b8a038;
+                    }
+
+                    &.ghost {
+                        background: #705898;
+                    }
+
+                    &.dragon {
+                        background: #7038f8;
+                    }
+
+                    &.dark {
+                        background: #705848;
+                    }
+
+                    &.steel {
+                        background: #b8b8d0;
+                    }
+
+                    &.fairy {
+                        background: #ee99ac;
+                    }
                 }
             }
         }
@@ -315,7 +502,9 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                color: #fff;
+                padding: 40px;
+                color: @ac-text;
+                .ac-card-base();
 
                 .empty-icon {
                     margin-bottom: 15px;
@@ -324,11 +513,13 @@
 
                 p {
                     margin: 0 0 10px;
-                    font-size: 18px;
+                    font-weight: 800;
+                    font-size: 20px;
                 }
 
                 .empty-hint {
-                    color: #999;
+                    color: @ac-text-sub;
+                    font-weight: 600;
                     font-size: 14px;
                 }
             }
@@ -338,10 +529,11 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            padding: 20px;
+            padding: 24px;
 
             .load-more-hint {
-                color: #999;
+                color: @ac-text-sub;
+                font-weight: 700;
                 font-size: 14px;
             }
         }

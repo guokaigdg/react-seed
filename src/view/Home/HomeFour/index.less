@@ -1,16 +1,33 @@
-.home-four-root{
-    flex: 1;
+// ============================================================
+// 动物森友会 Ultimate — HomeFour (图标展示) Nook手机面板
+// ============================================================
+@import url('../../../styles/index.less');
+
+.home-four-root {
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
     padding: 30px;
-    color: #7a7a7b;
-    background-color: #313338;
-    border-radius: 10px;
+    color: @ac-text-sub;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 50% 50%, fade(@ac-mint, 12%) 0%, transparent 50%);
 
     .icon-container {
         display: flex;
+        gap: 24px;
         align-items: center;
-        gap: 30px;
+        padding: 32px 48px;
+        .ac-card-base();
+
+        svg {
+            color: @ac-text-sub !important;
+            transition: all 0.3s @ac-bounce;
+
+            &:hover {
+                color: @ac-green !important;
+                transform: translateY(-4px) scale(1.15);
+            }
+        }
     }
 }

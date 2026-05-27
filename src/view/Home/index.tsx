@@ -15,7 +15,6 @@ import {
     GameController
 } from '@phosphor-icons/react';
 import {Button} from '@/components';
-
 import './index.less';
 
 interface LinkItem {
@@ -28,8 +27,6 @@ function Home() {
     const navigate = useNavigate();
     const params = useLocation();
     const {pathname} = params;
-    console.log('🚀 ~ file: index.tsx:7 ~ Tab ~ navigate:', pathname);
-
     const [activeLink, setActiveLink] = useState<string>(pathname);
 
     const MenuLink = [
@@ -55,9 +52,7 @@ function Home() {
     return (
         <div className={homeClasses}>
             <Outlet />
-            <div className={CX('home-dock', {
-                'home-dock-light': activeLink === '/home/two'
-            })}>
+            <div className={CX('home-dock', {'home-dock-light': activeLink === '/home/two'})}>
                 <div className='dock-items'>
                     <div className='dock-item github-dock'>
                         <a href='https://github.com/guokaigdg/react-seed' className='dock-link'>

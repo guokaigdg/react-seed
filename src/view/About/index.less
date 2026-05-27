@@ -1,3 +1,9 @@
+// ============================================================
+// 动物森友会 Ultimate — About (岛屿护照)
+// 非对称圆角卡片 + 物理厚度 + 弹性动效
+// ============================================================
+@import url('../../styles/index.less');
+
 .about-root {
     display: flex;
     flex-direction: column;
@@ -5,9 +11,137 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    padding-top: 70px;
-    color: #f9f4da;
-    font-weight: 900;
-    font-size: 50px;
-    background: #222;
+    padding-top: 72px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 30% 40%, fade(@ac-pink, 12%) 0%, transparent 35%),
+        radial-gradient(circle at 70% 60%, fade(@ac-blue, 12%) 0%, transparent 35%);
+
+    // ============================================================
+    // 岛屿护照卡片
+    // ============================================================
+    .ac-passport {
+        width: 400px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3.5px solid @ac-border;
+        animation: ac-bounce-in 0.5s @ac-bounce;
+        .ac-organic-r();
+        .ac-inset-gloss-with-depth(@depth-lg);
+
+        // 护照头部 — 叶子绿色条
+        .ac-passport-header {
+            padding: 14px 0;
+            color: #fff;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 3px;
+            text-align: center;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, @ac-green 0%, @ac-green-dk 100%);
+            border-bottom: 4px solid darken(@ac-green-dk, 12%);
+            box-shadow: inset 0 2px 0 rgb(255 255 255 / 25%);
+        }
+
+        .ac-passport-body {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 28px 28px 20px;
+
+            // 圆形头像
+            .ac-avatar {
+                .ac-avatar-circle {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 80px;
+                    height: 80px;
+                    background: linear-gradient(135deg, @ac-mint 0%, @ac-blue 100%);
+                    border: 3.5px solid @ac-border;
+                    border-radius: 50%;
+                    box-shadow: inset 0 2px 0 rgb(255 255 255 / 50%);
+                    animation: ac-float 3s ease-in-out infinite;
+                    .ac-physical-depth(@depth-sm);
+
+                    svg {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .ac-passport-info {
+                .ac-passport-name {
+                    color: @ac-text;
+                    font-weight: 900;
+                    font-size: 24px;
+                }
+
+                .ac-passport-title {
+                    margin-top: 2px;
+                    color: @ac-text-sub;
+                    font-weight: 700;
+                    font-size: 13px;
+                }
+
+                .ac-passport-status {
+                    margin-top: 10px;
+
+                    .ac-status {
+                        display: inline-block;
+                        padding: 4px 14px;
+                        font-weight: 700;
+                        font-size: 12px;
+                        .ac-organic-r(0.45);
+
+                        &.loading {
+                            color: @ac-text-sub;
+                            background: @ac-item-bg;
+                            border: 2px solid @ac-border;
+                        }
+
+                        &.success {
+                            color: darken(@ac-green, 15%);
+                            background: @ac-mint;
+                            border: 2px solid @ac-green;
+                        }
+
+                        &.error {
+                            color: #c62828;
+                            background: @ac-pink;
+                            border: 2px solid #ef9a9a;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 链接按钮 — 叶子绿 + 物理厚度
+        .ac-passport-link {
+            display: block;
+            margin: 0 24px 24px;
+            padding: 12px 0;
+            color: #fff;
+            font-weight: 800;
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(180deg, @ac-green 0%, @ac-green-dk 100%);
+            border: 3px solid darken(@ac-green-dk, 8%);
+            box-shadow: inset 0 2px 0 rgb(255 255 255 / 20%);
+            transition: all 0.3s @ac-bounce;
+            .ac-organic-r(0.6);
+            .ac-physical-depth-color(@depth-px, darken(@ac-green-dk, 18%));
+
+            &:hover {
+                border-bottom-width: (@depth-px + 2px);
+                transform: translateY(-3px);
+            }
+
+            &:active {
+                border-bottom-width: 2px;
+                transform: translateY(@ac-press-down);
+                transition-duration: 0.08s;
+            }
+        }
+    }
 }

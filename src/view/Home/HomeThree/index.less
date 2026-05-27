@@ -1,3 +1,8 @@
+// ============================================================
+// 动物森友会 Ultimate — HomeThree (Observer Demo) 公告栏
+// ============================================================
+@import url('../../../styles/index.less');
+
 .home-three-root {
     display: flex;
     flex: 1;
@@ -6,22 +11,42 @@
     justify-content: center;
     height: calc(100vh - 120px);
     padding: 30px;
-    color: rgb(152 155 157);
+    color: @ac-text;
 
     .home-three-container {
         display: flex;
+        gap: 24px;
         justify-content: center;
         width: 100%;
         max-width: 1200px;
-        gap: 30px;
     }
 
     .home-three-base {
         width: 45%;
-        height: calc(100vh - 150px);
-        padding: 15px;
+        height: calc(100vh - 200px);
+        padding: 24px;
         overflow-y: scroll;
-        background-color: #313338;
-        border-radius: 10px;
+        color: @ac-text;
+        .ac-card-base();
+
+        h3 {
+            color: @ac-text;
+            font-weight: 800;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        p {
+            padding: 6px 12px;
+            color: @ac-text-sub;
+            font-weight: 600;
+            cursor: pointer;
+            .ac-organic-r(0.3);
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: fade(@ac-mint, 40%);
+            }
+        }
     }
 }

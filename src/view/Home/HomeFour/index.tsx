@@ -24,9 +24,9 @@ const HomeFour = () => {
                 }}
             >
                 <div className='icon-container'>
-                    <Horse /> {/* I'm lime-green, 32px, and bold! */}
-                    <Heart /> {/* Me too! */}
-                    <Cube /> {/* Me three :) */}
+                    <Horse />
+                    <Heart />
+                    <Cube />
                     <AddressBook />
                     <AndroidLogo />
                     <Aperture />

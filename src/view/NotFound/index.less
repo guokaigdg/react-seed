@@ -1,12 +1,66 @@
+// ============================================================
+// 动物森友会 Ultimate — NotFound (迷路卡片)
+// 非对称圆角 + 物理厚度 + Q弹摇晃
+// ============================================================
+@import url('../../styles/index.less');
+
 .not-found-root {
-    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    color: #7a7a7b;
-    font-weight: 800;
-    font-size: 110px;
-    text-align: center;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 40% 60%, fade(@ac-blue, 20%) 0%, transparent 40%),
+        radial-gradient(circle at 60% 40%, fade(@ac-pink, 15%) 0%, transparent 40%);
+
+    .ac-lost-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 48px 56px;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3.5px solid @ac-border;
+        .ac-organic-r();
+        .ac-inset-gloss-with-depth(@depth-lg);
+        animation: ac-bounce-in 0.5s @ac-bounce;
+
+        .ac-lost-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 16px;
+            color: @ac-text-sub;
+            font-weight: 900;
+            font-size: 36px;
+            background: fade(@ac-blue, 40%);
+            border: 3px solid fade(@ac-border, 50%);
+            border-radius: 50%;
+            box-shadow: inset 0 2px 0 rgb(255 255 255 / 50%);
+            animation: ac-wiggle 2s ease-in-out infinite;
+        }
+
+        .ac-lost-code {
+            color: @ac-text;
+            font-weight: 900;
+            font-size: 72px;
+            line-height: 1;
+        }
+
+        .ac-lost-text {
+            margin-top: 12px;
+            color: @ac-text;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .ac-lost-hint {
+            margin-top: 8px;
+            color: @ac-text-sub;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
 }

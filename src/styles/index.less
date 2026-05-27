@@ -1,29 +1,95 @@
-// A Modern CSS Reset
-// 参考链接: https://www.joshwcomeau.com/css/custom-css-reset/
+// ============================================================
+// 动物森友会 Ultimate Version — 全局样式 & 物理模拟设计系统
+// 四大核心: 非对称圆角 / 内嵌光泽 / 物理厚度阴影 / 弹性动效
+// ============================================================
 
-/* 1. Use a more-intuitive box-sizing model */
+// ─── 官方色板 ───
+@ac-bg: #fffffa; // 页面底色 (极淡米白)
+@ac-item-bg: #fdfdf5; // 格子/slot底色 (暖白)
+@ac-green: #5ec475; // 叶子绿 (主交互色)
+@ac-green-dk: darken(@ac-green, 12%);
+@ac-text: #8b7355; // 主文字 (温暖深棕)
+@ac-text-sub: desaturate(lighten(@ac-text, 16%), 8%);
+@ac-orange: #ff8e56; // 强调/通知橙
+@ac-depth: #e5e5d8; // 物理厚度阴影色 (暖米灰)
+@ac-depth-dk: darken(@ac-depth, 10%);
+@ac-border: #d4cfc3; // 通用边框色
+@ac-border-dk: darken(@ac-border, 14%);
+@ac-mint: #d1e7dd; // 薄荷
+@ac-blue: #e0f2f7; // 浅蓝
+@ac-pink: #fadadd; // 浅粉
+@ac-yellow: #fff3cd; // 暖黄
+
+// ─── 物理参数 ───
+@depth-px: 8px; // 物理厚度 (6-10px 中取8)
+@depth-sm: 5px; // 小号厚度
+@depth-lg: 10px; // 大号厚度
+@ac-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+@ac-press-down: 4px; // 按压下沉量
+
+// ─── 非对称圆角 ───
+.ac-organic-r(@s: 1) {
+    border-radius: (40px * @s) (35px * @s) (45px * @s) (38px * @s) / (38px * @s) (45px * @s) (35px * @s) (40px * @s);
+}
+.ac-organic-r-sm() {
+    border-radius: 22px 18px 24px 20px / 20px 24px 18px 22px;
+}
+.ac-organic-r-lg() {
+    border-radius: 48px 42px 52px 44px / 44px 52px 42px 48px;
+}
+
+// ─── 物理厚度阴影 ───
+// 策略: border-bottom 独力承担厚度，box-shadow 仅做 inset 光泽
+// 避免 border-bottom + 外层 solid shadow 叠加造成三层阴影过重
+.ac-physical-depth(@d: @depth-px) {
+    border-bottom: @d solid @ac-depth;
+}
+.ac-physical-depth-color(@d: @depth-px, @c: @ac-depth) {
+    border-bottom: @d solid @c;
+}
+
+// ─── 内嵌光泽 (2px 内描边，模拟塑料/果冻高光) ───
+.ac-inset-gloss() {
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%);
+}
+.ac-inset-gloss-with-depth(@d: @depth-px) {
+    border-bottom: @d solid @ac-depth;
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%);
+}
+
+// ─── 卡片基础 ───
+.ac-card-base() {
+    background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+    border: 3px solid @ac-border;
+    .ac-organic-r();
+    .ac-inset-gloss-with-depth();
+}
+
+// ============================================================
+// Global Reset
+// ============================================================
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* 2. Remove default margin */
 * {
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 body {
-    font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif,
-        BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial !important;
-    /* 3. Add accessible line-height */
-    line-height: 1.5;
-    /* 4. Improve text rendering */
+    color: @ac-text;
+    font-family: Nunito, 'Zen Maru Gothic', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+        sans-serif !important;
+    line-height: 1.6;
+    background: @ac-bg;
     -webkit-font-smoothing: antialiased;
 }
 
-/* 5. Improve media defaults */
 img,
 picture,
 video,
@@ -33,7 +99,6 @@ svg {
     max-width: 100%;
 }
 
-/* 6. Inherit fonts for form controls */
 input,
 button,
 textarea,
@@ -41,29 +106,20 @@ select {
     font: inherit;
 }
 
-/* 7. Avoid text overflows */
+*::-webkit-scrollbar {
+    display: none;
+}
+
 p,
 h1,
 h2,
 h3,
 h4,
 h5,
-
-/* 8. Hide scrollbars globally */
-/* WebKit browsers (Chrome, Safari, Edge) */
-* {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-}
-
-*::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
 h6 {
     overflow-wrap: break-word;
 }
 
-/* 8. Improve line wrapping */
 p {
     text-wrap: pretty;
 }
@@ -77,13 +133,111 @@ h6 {
     text-wrap: balance;
 }
 
-/* 9. Create a root stacking context */
 #root {
     isolation: isolate;
 
     .app {
         height: 100vh;
         min-height: 600px;
-        background: #222;
+        background: @ac-bg;
+        background-image: radial-gradient(ellipse at 20% 50%, fade(@ac-mint, 12%) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, fade(@ac-blue, 10%) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 80%, fade(@ac-yellow, 8%) 0%, transparent 50%);
+    }
+}
+
+// ============================================================
+// 全局弹性动效
+// ============================================================
+
+@keyframes ac-bounce-in {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes ac-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes ac-wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-3deg);
+    }
+
+    75% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes ac-fade-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ac-slot-wobble {
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    20% {
+        transform: rotate(-2deg) scale(1.02);
+    }
+
+    40% {
+        transform: rotate(1.5deg) scale(0.98);
+    }
+
+    60% {
+        transform: rotate(-1deg) scale(1.01);
+    }
+
+    80% {
+        transform: rotate(0.5deg) scale(1);
+    }
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
     }
 }

@@ -1,3 +1,8 @@
+// ============================================================
+// 动物森友会 Ultimate — HomeOne (计数器) 公告板卡片
+// ============================================================
+@import url('../../../styles/index.less');
+
 .home-one-root {
     display: flex;
     flex: 1;
@@ -5,23 +10,43 @@
     align-items: center;
     box-sizing: border-box;
     width: 100%;
-    padding: 180px 20px;
+    padding: 40px 30px 120px;
     overflow-y: scroll;
-    color: rgb(152 155 157);
+    color: @ac-text;
     text-align: left;
-    background: rgb(49 51 56);
-    background-image: url('@/assets/images/bgp.png');
-    border-radius: 10px;
+    background: @ac-bg;
+    background-image: radial-gradient(circle at 20% 80%, fade(@ac-mint, 12%) 0%, transparent 40%);
 
+    h2 {
+        color: @ac-text;
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    h3 {
+        color: @ac-text-sub;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 2;
+    }
+
+    // 说明区域 — 非对称圆角 + 物理厚度
     .one-des {
         margin-top: 25px;
+        padding: 24px 28px;
+        background: linear-gradient(180deg, #fff 0%, @ac-item-bg 100%);
+        border: 3px solid @ac-border;
+        .ac-organic-r(0.6);
+        .ac-inset-gloss-with-depth(@depth-px);
     }
 
     .one-card {
         display: flex;
         flex-direction: column;
+        gap: 12px;
         justify-content: space-between;
         width: 30%;
+        min-width: 320px;
         height: 200px;
         margin-top: 25px;
 
