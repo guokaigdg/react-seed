@@ -1,192 +1,187 @@
-<h1 align="center">React template</h1>
-<br/>
+<h1 align="center">React Seed</h1>
 
 <div align="center">
     <img src='./images/home.png' style='width: 75%'/>
 </div>
-<br>
+
 <p align="center">
-    <a href="../README.md">简体中文</a> |  English
+    An out-of-the-box React frontend template
+</p>
+<div align="center">
+    <a href="https://github.com/guokaigdg/react-seed"><img src="https://img.shields.io/github/stars/guokaigdg/react-seed?style=flat-square" alt="Stars"></a>
+    <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
+    <a href="https://www.npmjs.com/package/react-seed"><img src="https://img.shields.io/npm/dm/react-seed.svg?style=flat-square" alt="npm downloads"></a>
+    <a href="https://github.com/guokaigdg/react-seed/releases"><img src="https://img.shields.io/github/v/tag/guokaigdg/react-seed?label=version&style=flat-square" alt="Version"></a>
+    <a href="https://atomgit.com/guokaigdg/react-seed"><img src="https://atomgit.com/guokaigdg/react-seed/star/badge.svg" alt="AtomGit Stars"/></a>
+</div>
+<br/>
+<p align="center">
+    <a href="../README.md">简体中文</a> | English
 </p>
 
 ## 🔗 Demo
 
--   preview (PC) [react-enterprise-template](https://guokaigdg.github.io/react-enterprise-template/)
--   preview（mobile） [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+-   PC: [react-seed](https://guokaigdg.github.io/react-seed/)
+-   Mobile: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
-## 👨🏻‍💻 Project Description
+## 🪅 Related Versions
 
--   mobile template: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+-   ⚡️ Vite version: [react-template-vite](https://github.com/guokaigdg/react-template-vite)
+-   📱 Mobile version: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
--   React template, a more rich template than CRA.
+## ✨ Features
 
--   Development configuration documentation [React18 + webpack5 + TypeScript4 + react-router](https://juejin.cn/post/7197790401495121977)
+-   📦 Out of the box, no extra configuration required
+-   📝 Key modules are well-commented for low learning cost
+-   🚀 Fast startup and compilation
+-   🌱 Easy to customize and extend
+-   🛡️ Strict code conventions
 
--   Project Creation Tutorial [<Building a React Project Development Template from 0 to 1>](https://juejin.cn/post/7223267430231326778)
+## 🚀 Tech Stack
 
-## 📱 Features
+| Category   | Stack                                                                            | Version   |
+| ---------- | -------------------------------------------------------------------------------- | --------- |
+| Framework  | React + ReactDOM                                                                 | 19.x      |
+| Language   | TypeScript                                                                       | 5.x       |
+| Build      | Webpack (custom config)                                                          | 5.x       |
+| Routing    | `react-router`                                                                   | 7.x       |
+| State      | MobX + `mobx-react-lite`                                                         | 6.x / 4.x |
+| Request    | axios + axios-retry                                                              | 1.x       |
+| Style      | Less + CSS Modules + PostCSS                                                     | —         |
+| Icon       | `@phosphor-icons/react` + custom SvgIcon                                         | —         |
+| Convention | ESLint 9 (flat config) + Prettier + Stylelint + husky + lint-staged + commitlint | —         |
 
--   📦 Out of the box, no configuration required.
--   📝 Comprehensive comment explanations, low learning cost.
--   🚀 Fast startup and compilation.
--   🌱 Highly customizable, easy to expand.
+## ⌛️ Requirements
 
-## 🚀 Technology Stack
+-   Node ≥ 18.0.0 (CI pinned to 22.12.0 via volta)
+-   npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm — pick one
 
-[![react](https://img.shields.io/badge/react-19.0.0-brightgreen.svg)](https://github.com/facebook/react/) [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.4-brightgreen.svg)](https://github.com/microsoft/TypeScript)[![webpack](https://img.shields.io/badge/webpack-5.75.0-brightgreen.svg)](https://github.com/facebook/react/) [![axios](https://img.shields.io/badge/axios-0.18.0-brightgreen.svg)](https://github.com/axios/axios) [![mobx](https://img.shields.io/badge/mobx-6.8.0-brightgreen.svg)](https://github.com/mobx) [![react-router](https://img.shields.io/badge/react--router-7.1.5-brightgreen.svg)](https://github.com/remix-run/react-router) [![MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)]()
+## 🏃 Quick Start
 
--   React v19
--   react-dom v19
--   React Hook
--   TypeScript v4
--   webpack v5
--   axios v1
--   mobx v6
--   mobx-react-lite v3
--   react-router v7
+```bash
+# 1. Install dependencies (pick one)
+npm install
+# or
+yarn install
 
-## 🎄 Upcoming Features:
-
--   ① Styles ✅ [config: 🔧 Add style file (css/less/sass/postCss) processing](https://github.com/guokaigdg/react-enterprise-template/commit/11fb415bac609dfa7474a1ee2db93ccb4a350a51)
--   ② Code specification ✅ [config: 🔧  Add Prettier/ESlint/StyleLint/EditorConfig code specification](https://github.com/guokaigdg/react-enterprise-template/commit/87dd1ca333f81203dd245a6eb40479a0745f096f)
--   ③ Routing ✅ [config: 🔧 Add routing management react-router-dom v6](https://github.com/guokaigdg/react-enterprise-template/commit/239446d0709eb52bad2b48af4983eef91c49f60d)
--   ④ Network request ✅ [feat: ✨  Add network request Axios v1](https://github.com/guokaigdg/react-enterprise-template/commit/27cd67f641d5ecf53b89770195f75bd32bccce46)
--   ⑤ Data sharing ✅ [feature: ✨  Add state management MobX v6](https://github.com/guokaigdg/react-enterprise-template/commit/992e1884943d4f8bda836f48c60df473418397d7)
--   ⑥ React Hook Rules ✅ [feat: ✨ Added check for React Hook rules](https://github.com/guokaigdg/react-enterprise-template/commit/15346c07a9ffd74f69dd1bb0dd6a4a42aa72df57)
--   ⑦ Encapsulated global SVG componen ✅ [feat: ✨ Encapsulated global SVG component](https://github.com/guokaigdg/react-enterprise-template/commit/066fc6ff28c1ac3b0d6422ebda8d59cdf9275d3a)
--   ⑧ Mobile adaptation ✅ [feat: ✨ Add mobile adaptation solution: postcss px to viewport](https://github.com/guokaigdg/react-enterprise-template/commit/78b10e2d0bada75f4043eaa43aecffb2973fd357)
-
--   ⑨ Explanation of the differences in the use of Mobx ✅ [feat: ✨ Add explanations and usage examples for makeObservable and makeAutoObservable](https://github.com/guokaigdg/react-enterprise-template/commit/11cee6d4e2f24eebe2d3eec3357d73eca7f9aa8c)
-
--   ⑩ Mobx react lite optimization ✅ [feat: ✨ Add the use and optimization of observer and observer in mobx react lite](https://github.com/guokaigdg/react-enterprise-template/commit/fe5620b4281e49d44cb25a945a6ba04f125f3f29)
-
--   ⑪ Add UI design materials ✅ [docs: 📝 Update development design reference documents](https://github.com/guokaigdg/react-enterprise-template/commit/a75a6a705a0e2367dbfcef5e5d562e72b63057df)
-
-## ⌛️ Install project dependencies
-
--   `npm` >= 6.14.x
--   `node` >= 16.30.x
-
-```
-npm
-$ npm install
-
-yarn
-$ yarn
+# 2. Start dev server
+npm run start
 ```
 
-## 🚀 Run the project
+## 📦 Build
 
-```
-npm
-$ npm run start
-
-yarn
-$ yarn dev
-```
-
-## 📦 Packaging and compilation
-
-```
-npm run build:qa  // Testing environment
-npm run build:prod  // Production environment
+```bash
+npm run build:qa     # build for testing environment
+npm run build:prod   # build for production
+npm run deploy       # build and publish via gh-pages
+npm run clean        # clean node_modules
 ```
 
-## 🏷 Branch description
+## 📂 Project Structure
 
-| Branch | description        |
+```
+react-seed/
+├── webpack/                 # Custom build configuration
+│   ├── config/              # webpack common/dev/prod configs
+│   └── server/              # dev server entry
+├── public/
+│   ├── favicon.ico
+│   └── index.html           # HTML entry template
+├── src/
+│   ├── index.tsx            # App mount entry
+│   ├── App.tsx              # Root component + useRoutes
+│   ├── router/              # Centralized routes (React.lazy + SuspenseLazy)
+│   ├── api/                 # API layer (axios wrapper, grouped by page)
+│   ├── store/               # MobX stores
+│   ├── components/          # Common components (barrel exports)
+│   ├── view/                # Page-level components
+│   ├── constants/           # Constants / enums
+│   ├── interface/           # Business type definitions
+│   ├── types/               # Global .d.ts
+│   ├── utils/               # Utilities + custom hooks
+│   ├── assets/              # Static assets (incl. svg sprite)
+│   └── styles/index.less    # Global styles
+├── docs/                    # Design materials, UI references, English README
+├── eslint.config.mjs        # ESLint 9 flat config
+├── tsconfig.json            # TS config (with path alias)
+├── AGENTS.md                # Project guide for AI coding assistants
+└── package.json
+```
+
+## 🛠 Development Guide
+
+### Path Alias
+
+Defined in both `tsconfig.json` and Webpack config — **prefer alias over relative paths**:
+
+```ts
+import {Button} from '@/components';
+import {useStores} from '@/store';
+```
+
+### Add a Page
+
+1. Create `index.tsx` + `index.less` under `src/view/XxxPage/`
+2. Register a lazy-loaded route via `SuspenseLazy` in `src/router/index.tsx`
+3. Edit `src/view/Tab/index.tsx` if a top-nav entry is needed
+
+### Add an API
+
+1. Create `index.ts` and `types/<page-name>.ts` under `src/api/<page-name>/`
+2. Import the wrapped `request` from `../request`, call `request<ResponseT>({url, method, data})`
+3. Keep request/response types co-located in the same `types/`
+
+### State Management (MobX)
+
+-   Call `makeAutoObservable(this)` in store constructors; wrap async assignments with `runInAction(...)`
+-   Register new stores in `stores` of `src/store/index.ts`
+-   Components reading observables **must** be wrapped with `observer`
+
+> For more conventions and AI collaboration notes, see [AGENTS.md](../AGENTS.md).
+
+## 📝 Commit Convention
+
+Commit messages follow commitlint:
+
+```bash
+git commit -m "<type>: <emoji> <subject>"
+# example
+git commit -m "feat: ✨ Add order query page"
+```
+
+Common types:
+
+| type     | emoji | description                           |
+| -------- | ----- | ------------------------------------- |
+| feat     | ✨    | New feature                           |
+| fix      | 🐛    | Bug fix                               |
+| docs     | 📝    | Documentation changes                 |
+| style    | 💄    | Style adjustments (no logic impact)   |
+| refactor | 🔨    | Refactor (no new feature, no bug fix) |
+| perf     | ⚡    | Performance optimization              |
+| build    | 📦    | Build system or dependency changes    |
+| config   | 🔧    | Configuration changes                 |
+| chore    | 🔥    | Miscellaneous                         |
+| release  | 🔖    | Release a version                     |
+
+## 🏷 Branches
+
+| Branch | Description        |
 | ------ | ------------------ |
 | main   | Main branch        |
-| deploy | demo deploy        |
 | dev    | Development branch |
+| deploy | Demo deploy branch |
 
-## Code submission specification
+## 📚 References
 
-```
-git <type>: <subject>
-git commit -m "feat: Project initialization"
-```
+-   Project tutorial: [Building a React Project Development Template from 0 to 1](https://juejin.cn/post/7223267430231326778)
+-   Development reference: [docs/data.md](./data.md)
 
-### type 参考:
+## 🤝 Contributing
 
-```
-fix       🐛 Bug fix
-feature   ✨ Introduce new features
-docs      📝 Document writing changes
-prune     🔥 Remove code or files
-perf      ⚡ Performance-related optimizations
-rocket    🚀 Deployment function
-style     💄 Style modification
-init      🎉 Initial submission
-release   🔖 Release version
-wip       🚧 Work in progress, and unstable submissions may occur
-config    🔧 Modify configuration file
-refactot  🔨 Refactoring (code changes that neither add new features nor fix bugs)
-merge     🔀 Merge branches
-```
+-   📬 Feel free to open Issues
+-   🧙‍♀️ Pull Requests are welcome — [see how to contribute](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
 
-## 📂 Directory Structure
+## 💡 License
 
-```
-    ├── .vscode
-    │   └──setting.json                 # Configuration for vscode that takes precedence over global settings.json
-    ├── doc                             # Development documentation
-    ├── webpack                         # Packaging and compilation
-    │   └──config                       # Webpack configuration
-    │       ├── webpack.common.js       # Base configuration
-    │       ├── webpack.dev.js          # Development environment configuration
-    │       └──webpack.prod.js          # Production environment configuration
-    ├── pubilc
-    │   ├──favicon.ico                  # HTML icon
-    │   └──index.html                   # HTML entry template
-    ├── src
-    |   ├── api                         # Interface configuration
-    |   ├── assets                      # Static resources
-    │   ├── components                  # Common components of the project
-    │   ├── http                        # Unified encapsulation of requests
-    │   ├── httpinterface               # TypeScript type definition
-    │   ├── constData                   # Constant list within the system
-    │   ├── router                      # Unified routing entry
-    │   ├── store                       # Data sharing
-    │   ├── styles                      # Global style
-    │   ├── utils                       # Utility library
-    │   ├── view                        # Pages
-    │   ├── App.tsx                     # Main interface
-    │   └──index.tsx                    # Entry file
-    ├── .babelrc.js                     # Babel configuration
-    ├── .editorconfig                   # Maintaining consistent coding style across editors
-    ├── .env.json                       # Environment variable configuration
-    ├── .eslintignore                   # Files ignored by ESLint
-    ├── .eslintrc.js                    # ESLint configuration
-    ├── .gitignore                      # Files ignored by git submission
-    ├── .npmrc
-    ├── .prettierignore                 # Files ignored by prettierc
-    ├── .prettierrc                     # Prettierc configuration
-    ├── .stylelintrc.js                 # Code style configuration
-    ├── LICENSE                         # Open source license
-    ├── package-lock.json               # npm package lock management
-    ├── package.json                    # Dependency management
-    ├── README.md                       # Project description
-    ├── tsconfig.json                   # TypeScript configuration file
-    └── yarn.lock                       # Yarn package lock management
-
-
-```
-
-## 📚 Development reference
-
--   <a href="./data.md">Development reference</a>
-
-## 🤝 How to Contribute
-
--   📬 If you have any questions, please open an issue or leave a message
--   🧙‍♀️ Welcome all contributors, come to Issus or submit Pull Requests to become a contributor
--   🙋 [Learn how to contribute code](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
-
-## ⭐️ Stargazers
-
-[![Stargazers repo roster for @guokaigdg/react-enterprise-template](https://reporoster.com/stars/guokaigdg/react-enterprise-template)](https://github.com/guokaigdg/react-enterprise-template/stargazers)
-
-## 💡 Open Source License
-
-The code and documentation of this project are released under the MIT License open source license.
+The code and documentation of this project are released under the [MIT License](../LICENSE).
