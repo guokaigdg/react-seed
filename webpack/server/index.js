@@ -12,6 +12,9 @@ const devServerOptions = {
 };
 const server = new WebpackDevServer(compiler, devServerOptions);
 
+// 获取 basename
+const basename = process.env.USER_BASENAME || '/react-seed';
+
 // 端口处理
 async function choosePort(port, host) {
     const resPort = await detect(port, host);
@@ -41,8 +44,8 @@ const logger = {
         console.log(`
     ${chalk.bold('App running at:')}
     ${chalk.gray(divider)}
-    - Local: ${chalk.blue(`  http://${host}:${port}`)}
-    - Network: ${chalk.blue(`http://${ip.address()}:${port}`)}
+    - Local: ${chalk.blue(`  http://${host}:${port}${basename}`)}
+    - Network: ${chalk.blue(`http://${ip.address()}:${port}${basename}`)}
     ${chalk.gray(divider)}
 
     Note that the development build is not optimized.

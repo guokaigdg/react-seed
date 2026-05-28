@@ -134,7 +134,7 @@
         "mobx-react-lite": "^3.4.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.11.2"
+        "react-router-dom": "^6.30.3"
     },
     "volta": {
         "node": "18.16.0",
