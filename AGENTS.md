@@ -24,10 +24,10 @@
 
 `react-seed` 是一套**企业级 React SPA 前端模板**，目标是为新业务直接复用其工程化基建（Webpack / TS / 路由 / 状态 / 请求 / 规范）。
 
--   类型：单页应用（SPA），构建产物为静态文件，可通过 `gh-pages` 一键发布
--   入口：`src/index.tsx` → `src/App.tsx` → `src/router/index.tsx`
--   在线 Demo：<https://guokaigdg.github.io/react-seed/>
--   姊妹分支：[Vite 版](https://github.com/guokaigdg/react-template-vite) ｜ [移动端版](https://github.com/guokaigdg/react-template-mobile)
+- 类型：单页应用（SPA），构建产物为静态文件，可通过 `gh-pages` 一键发布
+- 入口：`src/index.tsx` → `src/App.tsx` → `src/router/index.tsx`
+- 在线 Demo：<https://guokaigdg.github.io/react-seed/>
+- 姊妹分支：[Vite 版](https://github.com/guokaigdg/react-template-vite) ｜ [移动端版](https://github.com/guokaigdg/react-template-mobile)
 
 > 本仓库**不是**业务项目；新增内容时优先思考是否对模板"通用"。
 
@@ -46,7 +46,7 @@
 | 图标 | `@phosphor-icons/react` + 自研 `<SvgIcon>`（svg-sprite-loader） | svg 资源：`src/assets/icons/svg/` |
 | 代码质量 | ESLint 9（flat config）+ Prettier + Stylelint + husky + lint-staged + commitlint | 配置：`eslint.config.mjs` |
 | 环境变量 | `env-cmd` + `.env.json` | 三套环境：`development` / `qa` / `production` |
-| Node | ≥ 18.0.0；npm ≥ 7；volta 固定 22.12.0 | 见 `package.json#engines` / `volta` |
+| Node | ≥ 18.0.0；npm ≥ 7；volta 固定 22.22.3 | 见 `package.json#engines` / `volta` |
 
 ## 3. 目录结构
 
@@ -166,11 +166,11 @@ npm run deploy         # 一键发布到 gh-pages 分支
 
 ### 7.1 路由
 
--   集中式路由表：`src/router/index.tsx`，使用 `useRoutes(routes)` 渲染
--   懒加载统一通过 `SuspenseLazy(() => import(/* webpackChunkName:"xxx" */ '@/view/XxxPage'))`
--   嵌套路由通过 `children` 表达，参考 `home`（`/home/one` 是默认重定向目标）
--   导航 / 跳转：使用 `react-router` 的 `<Link>` / `useNavigate` / `<Navigate>`
--   ⚠️ 不要从 `react-router-dom` 导入；v7 已合并到 `react-router`
+- 集中式路由表：`src/router/index.tsx`，使用 `useRoutes(routes)` 渲染
+- 懒加载统一通过 `SuspenseLazy(() => import(/* webpackChunkName:"xxx" */ '@/view/XxxPage'))`
+- 嵌套路由通过 `children` 表达，参考 `home`（`/home/one` 是默认重定向目标）
+- 导航 / 跳转：使用 `react-router` 的 `<Link>` / `useNavigate` / `<Navigate>`
+- ⚠️ 不要从 `react-router-dom` 导入；v7 已合并到 `react-router`
 
 ### 7.2 状态管理（MobX）
 
@@ -219,9 +219,9 @@ const Page = observer(() => {
 
 `src/api/request.ts` 已封装：
 
--   `validateStatus: () => true`：所有 HTTP 状态都进入 `then`，业务在拦截器或调用方判断 `response.status`
--   `axios-retry`：超时 / `ECONNABORTED` 自动重试 2 次，间隔 `n*10s`
--   导出的是 `request<T>(config)` 函数，调用方需指定泛型
+- `validateStatus: () => true`：所有 HTTP 状态都进入 `then`，业务在拦截器或调用方判断 `response.status`
+- `axios-retry`：超时 / `ECONNABORTED` 自动重试 2 次，间隔 `n*10s`
+- 导出的是 `request<T>(config)` 函数，调用方需指定泛型
 
 ```ts
 // src/api/<page>/index.ts
@@ -233,23 +233,23 @@ export const getFoo = (params: {id: number}) => request<GetResponseFoo>({url: '/
 
 约定：
 
--   命名：`GetRequestXxxType` / `GetResponseXxxType` 集中放在同目录 `types/`
--   **业务代码不要直接 `import axios from 'axios'`**
--   `home-order/index.ts` 使用 `cors-anywhere` 仅作 demo；新项目应替换为真实 baseURL
+- 命名：`GetRequestXxxType` / `GetResponseXxxType` 集中放在同目录 `types/`
+- **业务代码不要直接 `import axios from 'axios'`**
+- `home-order/index.ts` 使用 `cors-anywhere` 仅作 demo；新项目应替换为真实 baseURL
 
 ### 7.4 通用组件
 
--   每个组件一个目录：`src/components/<Name>/{index.tsx, index.less | index.module.less}`
--   在 `src/components/index.ts` 追加 `export {default as Name} from './Name';`
--   消费侧：`import {Name} from '@/components'`
--   带工具函数的组件可拆分如 `Button/buttonHelpers.tsx`
+- 每个组件一个目录：`src/components/<Name>/{index.tsx, index.less | index.module.less}`
+- 在 `src/components/index.ts` 追加 `export {default as Name} from './Name';`
+- 消费侧：`import {Name} from '@/components'`
+- 带工具函数的组件可拆分如 `Button/buttonHelpers.tsx`
 
 ### 7.5 样式
 
--   全局：`src/styles/index.less`（已经引入 reset / normalize，**不要再次引入**）
--   局部全局：`index.less`（class 暴露到全局命名空间）
--   局部隔离：`index.module.less`（CSS Modules，按 `*.module.less` 自动开启）
--   PostCSS：autoprefixer / preset-env / flexbugs / normalize 已链路配齐
+- 全局：`src/styles/index.less`（已经引入 reset / normalize，**不要再次引入**）
+- 局部全局：`index.less`（class 暴露到全局命名空间）
+- 局部隔离：`index.module.less`（CSS Modules，按 `*.module.less` 自动开启）
+- PostCSS：autoprefixer / preset-env / flexbugs / normalize 已链路配齐
 
 ### 7.6 SVG 图标
 
@@ -266,9 +266,9 @@ import SvgIcon from '@/components/SvgIcon';
 
 ### 7.7 自定义 Hook
 
--   存放路径：`src/utils/useHook/`
--   现有：`useRequest.ts`（包装 loading / error / data）
--   新 Hook 需以 `use` 开头，并配置 ESLint react-hooks 规则不报错
+- 存放路径：`src/utils/useHook/`
+- 现有：`useRequest.ts`（包装 loading / error / data）
+- 新 Hook 需以 `use` 开头，并配置 ESLint react-hooks 规则不报错
 
 ### 7.8 类型与常量
 
@@ -282,11 +282,11 @@ import SvgIcon from '@/components/SvgIcon';
 
 ### 8.1 Lint / Format
 
--   ESLint 9 flat config：`eslint.config.mjs`（覆盖 ts/tsx/js）
--   Stylelint：`*.{css,less,scss}`，使用 `stylelint-config-rational-order`
--   Prettier：单引号、4 空格缩进（项目实际配置见 `.prettierrc*` 或 lint-staged 自动格式化）
--   husky `pre-commit`：lint-staged 仅对暂存文件跑 ESLint / Stylelint / Prettier
--   husky `commit-msg`：commitlint 校验
+- ESLint 9 flat config：`eslint.config.mjs`（覆盖 ts/tsx/js）
+- Stylelint：`*.{css,less,scss}`，使用 `stylelint-config-rational-order`
+- Prettier：单引号、4 空格缩进（项目实际配置见 `.prettierrc*` 或 lint-staged 自动格式化）
+- husky `pre-commit`：lint-staged 仅对暂存文件跑 ESLint / Stylelint / Prettier
+- husky `commit-msg`：commitlint 校验
 
 ### 8.2 提交规范
 
@@ -397,8 +397,8 @@ export const stores = {globalStore, aboutStore, counterStore};
 
 ## 11. 外部参考
 
--   原作者教程（掘金）：<https://juejin.cn/post/7197790401495121977>
--   Vite 版本：<https://github.com/guokaigdg/react-template-vite>
--   移动端版本：<https://github.com/guokaigdg/react-template-mobile>
--   React Router v7 升级指南：<https://reactrouter.com/7.1.5/upgrading/v6>
--   MobX 文档：<https://mobx.js.org/>
+- 原作者教程（掘金）：<https://juejin.cn/post/7197790401495121977>
+- Vite 版本：<https://github.com/guokaigdg/react-template-vite>
+- 移动端版本：<https://github.com/guokaigdg/react-template-mobile>
+- React Router v7 升级指南：<https://reactrouter.com/7.1.5/upgrading/v6>
+- MobX 文档：<https://mobx.js.org/>

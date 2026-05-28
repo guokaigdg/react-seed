@@ -21,21 +21,21 @@
 
 ## 🔗 在线 Demo
 
--   PC 端：[react-seed](https://guokaigdg.github.io/react-seed/)
--   移动端：[react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+- PC 端：[react-seed](https://guokaigdg.github.io/react-seed/)
+- 移动端：[react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## 🪅 相关版本
 
--   ⚡️ Vite 版本：[react-template-vite](https://github.com/guokaigdg/react-template-vite)
--   📱 移动端版本：[react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+- ⚡️ Vite 版本：[react-template-vite](https://github.com/guokaigdg/react-template-vite)
+- 📱 移动端版本：[react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## ✨ 特性
 
--   📦 开箱即用，无需额外配置
--   📝 关键模块均有注释说明，学习成本低
--   🚀 启动与编译迅速
--   🌱 易于定制，方便拓展
--   🛡️ 严格的代码规范
+- 📦 开箱即用，无需额外配置
+- 📝 关键模块均有注释说明，学习成本低
+- 🚀 启动与编译迅速
+- 🌱 易于定制，方便拓展
+- 🛡️ 严格的代码规范
 
 ## 🚀 技术栈
 
@@ -53,8 +53,8 @@
 
 ## ⌛️ 环境要求
 
--   Node ≥ 18.0.0（CI 通过 volta 固定为 22.12.0）
--   npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm 任选其一
+- Node ≥ 18.0.0（CI 通过 volta 固定为 22.22.3）
+- npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm 任选其一
 
 ## 🏃 快速开始
 
@@ -133,9 +133,9 @@ import {useStores} from '@/store';
 
 ### 状态管理（MobX）
 
--   Store 构造函数调用 `makeAutoObservable(this)`，异步赋值需包裹 `runInAction(...)`
--   在 `src/store/index.ts` 的 `stores` 对象中注册新 store
--   任何读取 observable 的组件**必须**使用 `observer` 包裹
+- Store 构造函数调用 `makeAutoObservable(this)`，异步赋值需包裹 `runInAction(...)`
+- 在 `src/store/index.ts` 的 `stores` 对象中注册新 store
+- 任何读取 observable 的组件**必须**使用 `observer` 包裹
 
 > 更详细的开发约定与 AI 协作说明，请参阅 [AGENTS.md](./AGENTS.md)。
 
@@ -174,13 +174,13 @@ git commit -m "feat: ✨ 新增订单查询页面"
 
 ## 📚 相关参考
 
--   项目搭建：[《从 0 到 1 搭建一个 React 项目开发模板》](https://juejin.cn/post/7223267430231326778)
--   开发资料：[docs/data.md](./docs/data.md)
+- 项目搭建：[《从 0 到 1 搭建一个 React 项目开发模板》](https://juejin.cn/post/7223267430231326778)
+- 开发资料：[docs/data.md](./docs/data.md)
 
 ## 🤝 如何贡献
 
--   📬 有问题欢迎提 Issues 或留言
--   🧙‍♀️ 欢迎所有的贡献者 [查看如何贡献代码](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
+- 📬 有问题欢迎提 Issues 或留言
+- 🧙‍♀️ 欢迎所有的贡献者 [查看如何贡献代码](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
 
 ## 💡 开源协议
 

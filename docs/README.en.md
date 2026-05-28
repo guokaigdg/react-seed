@@ -21,21 +21,21 @@
 
 ## 🔗 Demo
 
--   PC: [react-seed](https://guokaigdg.github.io/react-seed/)
--   Mobile: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+- PC: [react-seed](https://guokaigdg.github.io/react-seed/)
+- Mobile: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## 🪅 Related Versions
 
--   ⚡️ Vite version: [react-template-vite](https://github.com/guokaigdg/react-template-vite)
--   📱 Mobile version: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
+- ⚡️ Vite version: [react-template-vite](https://github.com/guokaigdg/react-template-vite)
+- 📱 Mobile version: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## ✨ Features
 
--   📦 Out of the box, no extra configuration required
--   📝 Key modules are well-commented for low learning cost
--   🚀 Fast startup and compilation
--   🌱 Easy to customize and extend
--   🛡️ Strict code conventions
+- 📦 Out of the box, no extra configuration required
+- 📝 Key modules are well-commented for low learning cost
+- 🚀 Fast startup and compilation
+- 🌱 Easy to customize and extend
+- 🛡️ Strict code conventions
 
 ## 🚀 Tech Stack
 
@@ -53,8 +53,8 @@
 
 ## ⌛️ Requirements
 
--   Node ≥ 18.0.0 (CI pinned to 22.12.0 via volta)
--   npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm — pick one
+- Node ≥ 18.0.0 (CI pinned to 22.22.3 via volta)
+- npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm — pick one
 
 ## 🏃 Quick Start
 
@@ -133,9 +133,9 @@ import {useStores} from '@/store';
 
 ### State Management (MobX)
 
--   Call `makeAutoObservable(this)` in store constructors; wrap async assignments with `runInAction(...)`
--   Register new stores in `stores` of `src/store/index.ts`
--   Components reading observables **must** be wrapped with `observer`
+- Call `makeAutoObservable(this)` in store constructors; wrap async assignments with `runInAction(...)`
+- Register new stores in `stores` of `src/store/index.ts`
+- Components reading observables **must** be wrapped with `observer`
 
 > For more conventions and AI collaboration notes, see [AGENTS.md](../AGENTS.md).
 
@@ -174,13 +174,13 @@ Common types:
 
 ## 📚 References
 
--   Project tutorial: [Building a React Project Development Template from 0 to 1](https://juejin.cn/post/7223267430231326778)
--   Development reference: [docs/data.md](./data.md)
+- Project tutorial: [Building a React Project Development Template from 0 to 1](https://juejin.cn/post/7223267430231326778)
+- Development reference: [docs/data.md](./data.md)
 
 ## 🤝 Contributing
 
--   📬 Feel free to open Issues
--   🧙‍♀️ Pull Requests are welcome — [see how to contribute](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
+- 📬 Feel free to open Issues
+- 🧙‍♀️ Pull Requests are welcome — [see how to contribute](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
 
 ## 💡 License
 
