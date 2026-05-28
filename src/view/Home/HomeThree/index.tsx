@@ -1,4 +1,3 @@
-import React from 'react';
 import ObserverHoc from './components/ObserverComponents';
 import ObserverComponents from './components/ObserverHoc';
 

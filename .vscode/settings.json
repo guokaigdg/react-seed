@@ -2,12 +2,7 @@
     "css.validate": false,
     "less.validate": false,
     "scss.validate": false,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
     "typescript.tsdk": "./node_modules/typescript/lib",
     "search.exclude": {
         "**/node_modules": true,
@@ -19,11 +14,7 @@
         "source.fixAll.eslint": "explicit",
         "source.fixAll.stylelint": "explicit"
     },
-    "stylelint.validate": [
-        "css",
-        "less",
-        "scss"
-    ],
+    "stylelint.validate": ["css", "less", "scss"],
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -34,7 +25,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

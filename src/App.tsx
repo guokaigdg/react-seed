@@ -1,4 +1,3 @@
-import React from 'react';
 import {useRoutes} from 'react-router';
 import Tab from '@/view/Tab';
 import routes from '@/router';

@@ -5,7 +5,6 @@ import tsEslintParser from '@typescript-eslint/parser'; // 导入 TypeScript ESL
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'; // 导入 ESLint 插件 prettier 的推荐配置，用于结合 ESLint 和 Prettier 进行代码格式化和风格检查
 import reactPlugin from 'eslint-plugin-react'; // 导入 ESLint 的 React 插件，用于针对 React 项目进行相关代码规范检查
 import reactHooksPlugin from 'eslint-plugin-react-hooks'; // 导入 ESLint 的 React Hooks 插件，用于检查 React Hooks 的使用是否符合规范
-import babelParser from '@babel/eslint-parser'; // 导入 Babel 的 ESLint 解析器，用于支持解析特定语法（例如一些通过 Babel 转换的语法）
 import globals from 'globals'; // 导入 ESLint 的全局变量定义，这里包含了不同环境（如 es2022、浏览器、Node 等）下的全局变量定义
 
 const OFF = 0; // 定义常量 OFF，表示关闭规则，对应 ESLint 规则配置中的 "off" 或者数值 0
@@ -79,23 +78,6 @@ const flatConfig = [
             react: {
                 // 设置 React 版本为自动检测，让 ESLint 相关插件根据项目实际使用的 React 版本来应用合适的规则和检查逻辑
                 version: 'detect'
-            }
-        }
-    },
-    // Babel 相关配置项，用于配置 ESLint 解析器如何处理通过 Babel 转换的语法等情况
-    {
-        name: 'babel-parser',
-        languageOptions: {
-            parser: babelParser, // 指定使用 babelParser 作为解析器，以支持解析经过 Babel 处理的代码语法
-            // 配置解析器支持的语法相关的详细选项
-            parserOptions: {
-                babelOptions: {
-                    babelrc: false, // 不使用项目中的.babelrc 文件来配置 Babel
-                    configFile: false, // 不使用单独的配置文件来配置 Babel
-                    browserslistConfigFile: false, // 不使用 browserslist 配置文件（通常与 Babel 针对不同浏览器兼容性处理相关）
-                    presets: ['@babel/preset-env'] // 指定使用的 Babel 预设，这里使用 '@babel/preset-env'，它可以根据目标环境自动转换 ES 新特性语法为兼容的旧语法
-                },
-                requireConfigFile: false // 不要求必须有配置文件来进行解析器相关配置
             }
         }
     },

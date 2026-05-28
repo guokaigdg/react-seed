@@ -1,8 +1,7 @@
-import React from 'react';
-import { observer, useLocalObservable } from 'mobx-react-lite';
-import { Button } from '@/components';
-import { fetchPokemon } from '@/api/home-two/index';
-import { runInAction } from 'mobx';
+import {observer, useLocalObservable} from 'mobx-react-lite';
+import {Button} from '@/components';
+import {fetchPokemon} from '@/api/home-two/index';
+import {runInAction} from 'mobx';
 
 const ObserverComponents = () => {
     /**
@@ -23,14 +22,14 @@ const ObserverComponents = () => {
         },
         async onFetchPokemon() {
             this.loading = true;
-            const result: any = await fetchPokemon({ limit: 100 });
-            const { results } = result.data;
+            const result: any = await fetchPokemon({limit: 100});
+            const {results} = result.data;
             runInAction(() => {
                 this.list = results;
                 this.loading = false;
             });
         },
-        onChange(item: { name: string; url: string }) {
+        onChange(item: {name: string; url: string}) {
             // 点击某个条目时，修改该条目的 name，还记得 mobx 使用的是同一份数据吗，这里的更改能影响到列表的数据
             item.name = '我被修改了';
         }
@@ -42,10 +41,13 @@ const ObserverComponents = () => {
 
     return (
         <div>
-            <h3 style={{ marginBottom: '10px' }}> observer( ) 点击获取数据, 打开控制台, 点击某一项查看console.log(渲染情况)</h3>
+            <h3 style={{marginBottom: '10px'}}>
+                {' '}
+                observer( ) 点击获取数据, 打开控制台, 点击某一项查看console.log(渲染情况)
+            </h3>
             <Button onClick={() => store.onFetchPokemon()}>获取数据observer</Button>
             <div>
-                {store.list?.map((item: { name: string; url: string }) => {
+                {store.list?.map((item: {name: string; url: string}) => {
                     console.log('render', item.name);
                     return (
                         <p key={item.url} onClick={() => store.onChange(item)}>

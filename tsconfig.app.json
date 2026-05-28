@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "composite": true, // Project References 必需
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+        "target": "ESNext", // 目标 JS 版本：使用最新 ES 特性，浏览器兼容由 Vite/Rolldown 处理
+        "module": "Preserve", // TS 5.4+ 选项，与 bundler 生态对齐，自动隐含 moduleResolution: bundler + esModuleInterop + resolveJsonModule
+        "jsx": "react-jsx", // React 17+ 自动 JSX 运行时，组件中无需 import React
+        "lib": ["ESNext", "DOM", "DOM.Iterable"], // 类型库：最新 ESNext + 浏览器 DOM
+        "useDefineForClassFields": true, // 类字段使用 [[Define]] 语义（ES 标准）
+        "allowJs": true, // 允许引入 .js 文件
+        "isolatedModules": true, // 每个文件作为独立模块编译，Vite/esbuild 等单文件转译工具要求
+        "noEmit": true, // 仅做类型检查，不输出 JS（产物由 Vite 负责）
+        "skipLibCheck": true, // 跳过 node_modules 中 .d.ts 的检查，加速类型检查
+        "strict": true, // 启用所有严格类型检查
+        "noUnusedLocals": true, // 报告未使用的局部变量
+        "noUnusedParameters": true, // 报告未使用的函数参数（用 _ 前缀可豁免）
+        "noFallthroughCasesInSwitch": true, // switch case 缺失 break 时报错
+        "experimentalDecorators": true, // 启用旧版装饰器语法（MobX 旧式 @observable 等）
+        "paths": {
+            // 路径别名：必须与 vite.config.ts#resolve.alias 保持同步
+            "@/*": ["./src/*"],
+            "Components/*": ["./src/components/*"],
+            "Utils/*": ["./src/utils/*"]
+        },
+        "types": ["vite/client"] // 仅引入 vite/client 的环境类型（import.meta.env、*.svg 等）；Node 类型隔离到 tsconfig.node.json
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "build"]
+}

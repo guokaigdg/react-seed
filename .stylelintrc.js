@@ -1,7 +1,7 @@
-module.exports = {
+export default {
     extends: [
         'stylelint-config-standard', // stylelint官方推荐配置标准, 如需修改请在rules添加配置
-        'stylelint-config-rational-order' // 将相关属性声明进行排序, 按照(1.Positioning 2.Box Model 3.Typography 4.Visual 5.Animation 6.Misc)
+        'stylelint-config-recess-order' // 将相关属性声明按 Recess(Bootstrap) 规范排序：定位 → 盒模型 → 边框 → 背景 → 文字 → 动画/其他
     ],
 
     plugins: ['stylelint-less'],

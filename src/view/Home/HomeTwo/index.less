@@ -1,13 +1,13 @@
 .home-two-root {
+    box-sizing: border-box;
     display: flex;
     flex: 1;
     flex-direction: column;
-    box-sizing: border-box;
     height: 100%;
     background: rgb(49 51 56);
     border-radius: 10px;
 
-    .search-wrap{
+    .search-wrap {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -22,13 +22,13 @@
             border-radius: 6px;
         }
 
-        .search-btn{
+        .search-btn {
             height: 40px;
             margin-left: 20px;
             color: #fff;
             background-color: #fcba28;
         }
-        
+
         .clear-btn {
             height: 40px;
             margin-left: 10px;
@@ -37,7 +37,7 @@
         }
     }
 
-    .list-root{
+    .list-root {
         display: flex;
         flex: 1;
         flex-wrap: wrap;
@@ -48,48 +48,47 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
 
-
         &::-webkit-scrollbar {
             display: none;
             width: 0;
         }
 
         .pokemon-item {
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box;
             width: 300px;
             height: 200px;
             margin: 8px;
-            color: #383a3a;
             font-size: 24px;
+            color: #383a3a;
             background-color: rgb(255 255 255);
             border-radius: 12px;
 
-            &:hover{
-                transform: scale(1.03);
+            &:hover {
                 cursor: pointer;
                 opacity: 0.9;
-                transition: .2s;
+                transform: scale(1.03);
+                transition: 0.2s;
             }
 
-            .img{
+            .img {
                 width: 100px;
                 height: 100px;
                 margin: 10px;
             }
 
-             .pokemon-types {
+            .pokemon-types {
                 display: flex;
                 gap: 5px;
                 margin-top: 5px;
 
                 .type-badge-small {
                     padding: 3px 10px;
-                    color: #fff;
                     font-size: 12px;
+                    color: #fff;
                     text-transform: capitalize;
                     background-color: #6b5b95;
                     border-radius: 20px;
@@ -104,7 +103,7 @@
         }
     }
 
-       .pokemon-detail-modal {
+    .pokemon-detail-modal {
         position: fixed;
         inset: 0;
         z-index: 1000;
@@ -119,11 +118,11 @@
             max-height: 80vh;
             padding: 20px;
             overflow-y: auto;
+            scrollbar-width: none;
             background-color: #fff;
             border-radius: 10px;
 
             -ms-overflow-style: none;
-            scrollbar-width: none;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -134,8 +133,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 20px;
                 padding-bottom: 10px;
+                margin-bottom: 20px;
                 border-bottom: 1px solid #eee;
 
                 h2 {
@@ -151,11 +150,11 @@
                     width: 30px;
                     height: 30px;
                     padding: 0;
-                    color: #666;
                     font-size: 30px;
+                    color: #666;
+                    cursor: pointer;
                     background: none;
                     border: none;
-                    cursor: pointer;
 
                     &:hover {
                         color: #333;
@@ -192,9 +191,9 @@
 
                             > span:first-child {
                                 margin-bottom: 8px;
-                                color: #555;
-                                font-weight: bold;
                                 font-size: 14px;
+                                font-weight: bold;
+                                color: #555;
                             }
 
                             .types {
@@ -204,8 +203,8 @@
 
                                 .type-badge {
                                     padding: 4px 10px;
-                                    color: #fff;
                                     font-size: 12px;
+                                    color: #fff;
                                     text-transform: capitalize;
                                     background-color: #6b5b95;
                                     border-radius: 12px;
@@ -221,9 +220,9 @@
 
                         > span:first-child {
                             margin-bottom: 8px;
-                            color: #555;
-                            font-weight: bold;
                             font-size: 16px;
+                            font-weight: bold;
+                            color: #555;
                         }
 
                         .types,
@@ -235,8 +234,8 @@
                             .type-badge,
                             .ability-badge {
                                 padding: 5px 12px;
-                                color: #333;
                                 font-size: 14px;
+                                color: #333;
                                 text-transform: capitalize;
                                 background-color: #f0f0f0;
                                 border-radius: 15px;
@@ -266,8 +265,8 @@
                                 }
 
                                 .stat-value {
-                                    color: #333;
                                     font-weight: bold;
+                                    color: #333;
                                 }
                             }
                         }

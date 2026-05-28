@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { observer, useLocalObservable } from 'mobx-react-lite';
-import { runInAction } from 'mobx';
-import { GetResponsePokemonData } from '@/api/home-two/types/home-two';
-import { GithubLogoIcon } from '@phosphor-icons/react';
-import { fetchPokemon } from '@/api/home-two';
+import {useState, useEffect} from 'react';
+import {observer, useLocalObservable} from 'mobx-react-lite';
+import {runInAction} from 'mobx';
+import {GetResponsePokemonData} from '@/api/home-two/types/home-two';
+import {GithubLogoIcon} from '@phosphor-icons/react';
+import {fetchPokemon} from '@/api/home-two';
 import * as styles from './index.module.less';
 
 interface StoreType {
@@ -23,7 +23,7 @@ const About = () => {
                 const res: GetResponsePokemonData = await fetchPokemon({
                     limit: 500
                 });
-                const { results } = res.data;
+                const {results} = res.data;
                 if (results) {
                     setDataState('SUCCESS');
                     runInAction(() => {
@@ -35,12 +35,12 @@ const About = () => {
                         this.pokemon = 'ERROR';
                     });
                 }
-            } catch (err) {
+            } catch {
                 setDataState('ERROR');
             }
         }
     }));
-    const { getFetchPokemo, pokemon } = PokemoStore;
+    const {getFetchPokemo, pokemon} = PokemoStore;
 
     useEffect(() => {
         getFetchPokemo();

@@ -1,4 +1,3 @@
-import React from 'react';
 import {observer, useLocalObservable} from 'mobx-react-lite';
 import {Button, Card} from '@/components';
 import './index.less';

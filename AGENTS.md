@@ -22,12 +22,12 @@
 
 ## 1. 项目概览
 
-`react-seed` 是一套**企业级 React SPA 前端模板**，目标是为新业务直接复用其工程化基建（Webpack / TS / 路由 / 状态 / 请求 / 规范）。
+`react-seed` 是一套**企业级 React SPA 前端模板**，目标是为新业务直接复用其工程化基建（Vite / TS / 路由 / 状态 / 请求 / 规范）。
 
 - 类型：单页应用（SPA），构建产物为静态文件，可通过 `gh-pages` 一键发布
 - 入口：`src/index.tsx` → `src/App.tsx` → `src/router/index.tsx`
 - 在线 Demo：<https://guokaigdg.github.io/react-seed/>
-- 姊妹分支：[Vite 版](https://github.com/guokaigdg/react-template-vite) ｜ [移动端版](https://github.com/guokaigdg/react-template-mobile)
+- 姊妹分支：[移动端版](https://github.com/guokaigdg/react-template-mobile)
 
 > 本仓库**不是**业务项目；新增内容时优先思考是否对模板"通用"。
 
@@ -35,37 +35,31 @@
 
 | 分类 | 选型 | 版本 / 备注 |
 | --- | --- | --- |
-| 框架 | React + ReactDOM | **19.x**（注意 React 19 行为差异，例如 ref 不再需要 `forwardRef` 包裹函数组件） |
+| 框架 | React + ReactDOM | **19.x**（启用 `react-jsx` 自动 JSX 运行时，无需 `import React`） |
 | 语言 | TypeScript | **5.x**，`strict: true`，并启用 `noUnusedLocals` / `noUnusedParameters` |
-| 构建 | Webpack 5（自定义，**非 CRA / 非 Vite**） | 配置位于 `webpack/config/{common,dev,prod}.js` |
-| 开发服务 | `webpack-dev-server` + 自研启动脚本 | `webpack/server/index.js` |
+| 构建 | **Vite 8** + `@vitejs/plugin-react` | 配置位于 `vite.config.ts`（根目录，Vite 8 默认 Rolldown 打包） |
+| 开发服务 | `vite` 内置 dev server | 端口 3000；`server.host: true` |
 | 路由 | `react-router` | **v7**，从 `react-router` 导入（**不是** `react-router-dom`） |
 | 状态管理 | MobX + `mobx-react-lite` | mobx 6 / lite 4，`enforceActions: 'always'` |
 | 网络请求 | axios + `axios-retry` | 全局封装见 `src/api/request.ts` |
-| 样式 | Less + CSS Modules + PostCSS（autoprefixer / preset-env / normalize / flexbugs） | 全局样式：`src/styles/index.less` |
-| 图标 | `@phosphor-icons/react` + 自研 `<SvgIcon>`（svg-sprite-loader） | svg 资源：`src/assets/icons/svg/` |
+| 样式 | Less + CSS Modules | Vite 内置，`*.module.less` 自动开启 CSS Modules |
+| 图标 | `@phosphor-icons/react` + 本地 svg as React 组件（`vite-plugin-svgr`） | svg 资源：`src/assets/icons/svg/` |
 | 代码质量 | ESLint 9（flat config）+ Prettier + Stylelint + husky + lint-staged + commitlint | 配置：`eslint.config.mjs` |
-| 环境变量 | `env-cmd` + `.env.json` | 三套环境：`development` / `qa` / `production` |
-| Node | ≥ 18.0.0；npm ≥ 7；volta 固定 22.22.3 | 见 `package.json#engines` / `volta` |
+| 环境变量 | Vite `.env.[mode]` | 三套环境：`development` / `qa` / `production`，通过 `import.meta.env` 访问 |
+| Node | ≥ 22.22.1；npm ≥ 7；volta 固定 22.22.3 | 见 `package.json#engines` / `volta` |
 
 ## 3. 目录结构
 
 ```
 react-seed/
-├── webpack/                    # 自定义构建配置（与脚本入口）
-│   ├── config/
-│   │   ├── webpack.common.js   # 通用配置（loader / alias / plugin）
-│   │   ├── webpack.dev.js      # 开发配置
-│   │   └── webpack.prod.js     # 生产配置（含压缩、分包、bundle analyzer）
-│   ├── server/index.js         # dev server 启动入口（端口探测、proxy）
-│   ├── build.sh                # 构建脚本
-│   ├── conf.js / env.js / paths.js / setProxy.js
+├── vite.config.ts              # Vite 配置（alias / plugins / build / server）
+├── index.html                  # Vite 入口 HTML（根目录，引用 /src/index.tsx）
 ├── public/
-│   ├── index.html              # HTML 模板（%PUBLIC_URL% 占位）
-│   └── favicon.ico
+│   └── favicon.ico             # 静态资源（不参与构建处理）
 ├── src/
 │   ├── index.tsx               # ReactDOM.createRoot 挂载
 │   ├── App.tsx                 # 根组件，BrowserRouter + useRoutes
+│   ├── vite-env.d.ts           # Vite 类型与 import.meta.env 声明
 │   ├── router/
 │   │   ├── index.tsx           # 集中式路由表（React.lazy + SuspenseLazy）
 │   │   └── README.md
@@ -84,7 +78,6 @@ react-seed/
 │   │   ├── Button/             # 含 buttonHelpers.tsx
 │   │   ├── Card/
 │   │   ├── SuspenseLazy/       # 懒加载高阶
-│   │   ├── SvgIcon/            # 含 README，约定 svg 用法
 │   │   └── index.ts            # 统一 export
 │   ├── view/                   # 页面级组件
 │   │   ├── Home/               # 含 7 个子页面（One/Two/Three/Four/Mobx/Icon/Order）
@@ -99,10 +92,12 @@ react-seed/
 │   │   ├── useHook/useRequest.ts   # 自研 hook：请求 + loading + 错误
 │   │   ├── validate.ts
 │   │   └── variable.ts
-│   ├── assets/                 # 图片、svg 雪碧图（icons/svg/* + icons/index.ts）
+│   ├── assets/                 # 图片、svg（icons/svg/* 通过 ?react 后缀作为 React 组件引入）
 │   └── styles/index.less       # 全局样式入口
 ├── docs/                       # 设计文档（含 ui.md / data.md / README.en.md）
-├── .env.json                   # 三套环境变量（dev/qa/prod）
+├── .env.development            # 开发环境变量
+├── .env.qa                     # QA 环境变量
+├── .env.production             # 生产环境变量
 ├── eslint.config.mjs           # ESLint 9 flat config
 ├── tsconfig.json               # path alias + 严格模式
 ├── package.json
@@ -111,7 +106,7 @@ react-seed/
 
 ## 4. 路径别名
 
-`tsconfig.json` 与 webpack alias **必须保持同步**。优先使用别名，避免 `../../../` 长相对路径：
+`tsconfig.json#paths` 与 `vite.config.ts#resolve.alias` **必须保持同步**。优先使用别名，避免 `../../../` 长相对路径：
 
 | 别名           | 实际路径           |
 | -------------- | ------------------ |
@@ -120,7 +115,7 @@ react-seed/
 | `Utils/*`      | `src/utils/*`      |
 
 ```ts
-import {Button, SvgIcon} from '@/components';
+import {Button, Card} from '@/components';
 import {useStores} from '@/store';
 import routes from '@/router';
 import request from '@/api/request';
@@ -130,33 +125,34 @@ import request from '@/api/request';
 
 ### 5.1 npm scripts（`package.json`）
 
-| 命令                    | 行为                                                           |
-| ----------------------- | -------------------------------------------------------------- |
-| `npm run dev` / `start` | 启动 dev server（`env-cmd -e development` + `webpack/server`） |
-| `npm run build:qa`      | QA 环境打包（`webpack.prod.js` + `-e qa`）                     |
-| `npm run build:prod`    | 生产环境打包                                                   |
-| `npm run deploy`        | `build:prod` + `gh-pages -d build`，发布到 GitHub Pages        |
-| `npm run clean`         | 删除 `node_modules`                                            |
+| 命令                    | 行为                                                    |
+| ----------------------- | ------------------------------------------------------- |
+| `npm run dev` / `start` | `vite` 启动 dev server（默认 `development` mode）       |
+| `npm run build:qa`      | `vite build --mode qa`                                  |
+| `npm run build:prod`    | `vite build --mode production`                          |
+| `npm run preview`       | `vite preview`，本地预览生产产物                        |
+| `npm run deploy`        | `build:prod` + `gh-pages -d build`，发布到 GitHub Pages |
+| `npm run clean`         | 删除 `node_modules`                                     |
 
 > 项目**没有**测试脚本（无 Jest / Vitest）。**不要**假定 `npm test` 存在。
 
-### 5.2 环境变量（`.env.json`）
+### 5.2 环境变量（`.env.[mode]`）
 
-每个环境提供 4 个变量，由 `env-cmd` 注入到 `process.env`：
+每个环境提供 4 个变量，由 Vite 根据 `--mode` 自动加载到 `import.meta.env`：
 
 | 变量            | 含义                              | 默认           |
 | --------------- | --------------------------------- | -------------- |
 | `USER_BASE_URL` | 接口 baseURL（会注入到 axios）    | `/`            |
 | `USER_BASENAME` | `react-router` basename           | `/react-seed`  |
-| `PUBLIC_PATH`   | webpack `output.publicPath`       | `/react-seed/` |
+| `PUBLIC_PATH`   | Vite `base`（产物公共路径）       | `/react-seed/` |
 | `ENV`           | 当前环境标识（`dev`/`qa`/`prod`） | —              |
 
-新增字段需同时在 `development` / `qa` / `production` 三处补齐。
+新增字段需同时在 `.env.development` / `.env.qa` / `.env.production` 三处补齐，并在 `src/vite-env.d.ts` 的 `ImportMetaEnv` 中追加类型。访问方式：`import.meta.env.USER_BASE_URL`。
 
 ## 6. 运行与构建
 
 ```bash
-npm install            # Node ≥ 18，建议使用 volta 锁定版本
+npm install            # Node ≥ 22.22.1，建议使用 volta 锁定版本
 npm run dev            # 启动开发服务（默认占用空闲端口）
 npm run build:prod     # 产物输出至 build/
 npm run deploy         # 一键发布到 gh-pages 分支
@@ -167,7 +163,7 @@ npm run deploy         # 一键发布到 gh-pages 分支
 ### 7.1 路由
 
 - 集中式路由表：`src/router/index.tsx`，使用 `useRoutes(routes)` 渲染
-- 懒加载统一通过 `SuspenseLazy(() => import(/* webpackChunkName:"xxx" */ '@/view/XxxPage'))`
+- 懒加载统一通过 `SuspenseLazy(() => import('@/view/XxxPage'))`（Vite 自动按动态 import 拆分 chunk，不需要 `webpackChunkName` 注释）
 - 嵌套路由通过 `children` 表达，参考 `home`（`/home/one` 是默认重定向目标）
 - 导航 / 跳转：使用 `react-router` 的 `<Link>` / `useNavigate` / `<Navigate>`
 - ⚠️ 不要从 `react-router-dom` 导入；v7 已合并到 `react-router`
@@ -249,20 +245,24 @@ export const getFoo = (params: {id: number}) => request<GetResponseFoo>({url: '/
 - 全局：`src/styles/index.less`（已经引入 reset / normalize，**不要再次引入**）
 - 局部全局：`index.less`（class 暴露到全局命名空间）
 - 局部隔离：`index.module.less`（CSS Modules，按 `*.module.less` 自动开启）
-- PostCSS：autoprefixer / preset-env / flexbugs / normalize 已链路配齐
+- Vite 内置 PostCSS / autoprefixer；Less 由 Vite + `less` 直接编译，无需额外 loader 配置
 
 ### 7.6 SVG 图标
 
-```
-src/assets/icons/svg/foo.svg   # 放入此目录会被 svg-sprite-loader 自动注入
-```
+通过 `vite-plugin-svgr` 把 svg 当作 React 组件引入（`?react` 后缀）：
 
 ```tsx
-import SvgIcon from '@/components/SvgIcon';
-<SvgIcon name='foo' className='...' />;
+import FooIcon from '@/assets/icons/svg/foo.svg?react';
+
+<FooIcon className='icon' fill='#1db02e' width={24} />;
 ```
 
-详细文档：`src/components/SvgIcon/README.md`。
+约定：
+
+- svg 资源统一放 `src/assets/icons/svg/`
+- 组件命名采用 `XxxIcon`（PascalCase + Icon 后缀）
+- 颜色：svg 内部需使用 `currentColor` 或 `fill="..."` 透传；规模化品牌图标推荐 `currentColor` + 父级 `color` 控制
+- 装饰性图标走本方案；通用 UI 图标（箭头、关闭、加载等）优先用 `@phosphor-icons/react`
 
 ### 7.7 自定义 Hook
 
@@ -283,7 +283,7 @@ import SvgIcon from '@/components/SvgIcon';
 ### 8.1 Lint / Format
 
 - ESLint 9 flat config：`eslint.config.mjs`（覆盖 ts/tsx/js）
-- Stylelint：`*.{css,less,scss}`，使用 `stylelint-config-rational-order`
+- Stylelint：`*.{css,less,scss}`，使用 `stylelint-config-recess-order`
 - Prettier：单引号、4 空格缩进（项目实际配置见 `.prettierrc*` 或 lint-staged 自动格式化）
 - husky `pre-commit`：lint-staged 仅对暂存文件跑 ESLint / Stylelint / Prettier
 - husky `commit-msg`：commitlint 校验
@@ -312,19 +312,19 @@ import SvgIcon from '@/components/SvgIcon';
 
 ## 9. AI 修改代码须知
 
-1. **不要**新增功能等价的依赖：请求用 `axios`、状态用 `mobx`、图标用 `phosphor` 或 `<SvgIcon>`、类名拼接用 `classnames`
+1. **不要**新增功能等价的依赖：请求用 `axios`、状态用 `mobx`、图标用 `phosphor` 或 `?react` 引入的本地 svg、类名拼接用 `classnames`
 2. **不要**把 `react-router` 改成 `react-router-dom`：v7 已合并
 3. **不要**绕过 `request.ts`：保持统一拦截器与重试策略
 4. **不要**直接修改 observable：必须在 action / `runInAction` 中
 5. **不要**主动新增单测：项目无测试基建，除非用户明确要求
 6. **同步修改**：
-    - 新增路径别名：`tsconfig.json` + `webpack/config/webpack.common.js` 必须同时改
-    - 新增环境变量：`.env.json` 三个环境都要补
+    - 新增路径别名：`tsconfig.json#paths` + `vite.config.ts#resolve.alias` 必须同时改
+    - 新增环境变量：`.env.development` / `.env.qa` / `.env.production` 三个环境都要补，并在 `src/vite-env.d.ts` 的 `ImportMetaEnv` 中追加字段类型
     - 新增组件：组件目录 + `src/components/index.ts` barrel
     - 新增 store：实例文件 + `src/store/index.ts` 中 `stores` 聚合
     - 新增页面：`src/view/Xxx` + `src/router/index.tsx` + 必要时 `src/view/Tab/index.tsx`
-7. webpack 配置改动需检查 `webpack.common.js` / `dev.js` / `prod.js` 三处一致性
-8. `public/` 仅放静态资源（HTML 模板、favicon）；不要放业务代码
+7. 构建配置改动统一在 `vite.config.ts`；不要再引入 webpack 相关依赖或配置
+8. `public/` 仅放静态资源（favicon 等，构建时原样复制到产物根）；HTML 模板位于根目录 `index.html`
 9. 修改前优先 `read_file` 确认现状；修改后**保持目录结构与命名风格**与既有页面一致（参考 `Home/HomeTwo`）
 10. 提交代码请使用 `auto-commit`，**不要**直接执行 `git commit`
 
@@ -336,7 +336,7 @@ import SvgIcon from '@/components/SvgIcon';
 2. `src/router/index.tsx`：
 
     ```ts
-    const Foo = SuspenseLazy(() => import(/* webpackChunkName:"foo" */ '@/view/Foo'));
+    const Foo = SuspenseLazy(() => import('@/view/Foo'));
     // routes 中追加 { path: 'foo', element: Foo }
     ```
 
@@ -393,12 +393,11 @@ export const stores = {globalStore, aboutStore, counterStore};
 ### 10.5 新增 SVG 图标
 
 1. 把 `bar.svg` 放入 `src/assets/icons/svg/`
-2. 直接用：`<SvgIcon name="bar" />`（无需手动 import；由 sprite loader 自动收集）
+2. 用法：`import BarIcon from '@/assets/icons/svg/bar.svg?react';` → `<BarIcon className='...' />`
 
 ## 11. 外部参考
 
 - 原作者教程（掘金）：<https://juejin.cn/post/7197790401495121977>
-- Vite 版本：<https://github.com/guokaigdg/react-template-vite>
 - 移动端版本：<https://github.com/guokaigdg/react-template-mobile>
 - React Router v7 升级指南：<https://reactrouter.com/7.1.5/upgrading/v6>
 - MobX 文档：<https://mobx.js.org/>

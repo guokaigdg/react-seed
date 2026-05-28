@@ -1,8 +1,8 @@
 {
     "name": "react-seed",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "An out-of-the-box React enterprise frontend template",
-    "main": "index.js",
+    "type": "module",
     "license": "MIT",
     "author": {
         "name": "guokaigdg"
@@ -16,19 +16,19 @@
     ],
     "keywords": [
         "React",
-        "JSX",
         "TSX",
-        "Webpack",
+        "Vite",
         "React Router",
         "ESLint",
         "template"
     ],
     "homepage": "./react-seed",
     "scripts": {
-        "dev": "npm run start",
-        "start": "env-cmd -r .env.json -e development node webpack/server",
-        "build:qa": "env-cmd -r .env.json -e qa webpack --config ./webpack/config/webpack.prod.js",
-        "build:prod": "env-cmd -r .env.json -e production webpack --config ./webpack/config/webpack.prod.js",
+        "dev": "vite",
+        "start": "vite",
+        "build:qa": "vite build --mode qa",
+        "build:prod": "vite build --mode production",
+        "preview": "vite preview",
         "clean": "rm -rf node_modules",
         "deploy": "npm run build:prod && gh-pages -d build"
     },
@@ -39,7 +39,6 @@
     "browserslist": [
         ">0.2%",
         "not dead",
-        "ie >= 9",
         "not op_mini all"
     ],
     "husky": {
@@ -50,76 +49,43 @@
     },
     "lint-staged": {
         "*.{ts,tsx,js}": [
-            "eslint --config .eslintrc.js"
+            "eslint"
         ],
         "*.{css,less,scss}": [
-            "stylelint --config .stylelintrc.js"
+            "stylelint"
         ],
         "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
             "prettier --write"
         ]
     },
     "devDependencies": {
-        "@babel/cli": "^7.27.2",
-        "@babel/core": "^7.27.3",
-        "@babel/eslint-parser": "^7.27.1",
-        "@babel/plugin-transform-runtime": "^7.27.3",
-        "@babel/preset-env": "^7.27.2",
-        "@babel/preset-react": "^7.27.1",
-        "@babel/preset-typescript": "^7.28.5",
-        "@babel/runtime-corejs3": "^7.27.3",
+        "@types/node": "^22.19.0",
         "@types/react": "^19.1.6",
         "@types/react-dom": "^19.1.5",
-        "@types/webpack-env": "^1.18.3",
         "@typescript-eslint/eslint-plugin": "^8.46.3",
         "@typescript-eslint/parser": "^8.46.3",
-        "autoprefixer": "^10.4.21",
-        "babel-loader": "^9.1.3",
-        "chalk": "4.1.2",
+        "@vitejs/plugin-react": "^6.0.2",
         "classnames": "^2.5.1",
-        "compression-webpack-plugin": "^10.0.0",
-        "copy-webpack-plugin": "^11.0.0",
-        "core-js": "^3.42.0",
-        "css-loader": "^7.1.2",
-        "css-minimizer-webpack-plugin": "^5.0.1",
-        "detect-port-alt": "^1.1.6",
-        "env-cmd": "^10.1.0",
         "eslint": "^9.27.0",
-        "eslint-config-prettier": "^9.1.0",
+        "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.4.0",
         "eslint-plugin-react": "^7.37.5",
-        "eslint-plugin-react-hooks": "^5.2.0",
-        "fork-ts-checker-webpack-plugin": "^9.1.0",
-        "gh-pages": "^5.0.0",
-        "globals": "^15.15.0",
-        "html-webpack-plugin": "^5.5.3",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "gh-pages": "^6.3.0",
+        "globals": "^17.6.0",
         "husky": "^9.1.7",
-        "ip": "^1.1.8",
         "less": "^4.3.0",
-        "less-loader": "^12.3.0",
-        "lint-staged": "^13.3.0",
-        "mini-css-extract-plugin": "^2.7.6",
-        "postcss": "^8.5.3",
-        "postcss-flexbugs-fixes": "^5.0.2",
+        "lint-staged": "^17.0.5",
         "postcss-less": "^6.0.0",
-        "postcss-loader": "^8.1.1",
-        "postcss-normalize": "^13.0.1",
-        "postcss-preset-env": "^10.2.0",
         "prettier": "^3.5.3",
-        "style-loader": "^3.3.2",
-        "stylelint": "^16.19.1",
-        "stylelint-config-rational-order": "^0.1.2",
-        "stylelint-config-standard": "^36.0.1",
-        "stylelint-less": "^3.0.1",
-        "svg-sprite-loader": "^6.0.11",
-        "terser-webpack-plugin": "^5.3.14",
-        "typescript": "^5.9.3",
-        "webpack": "^5.99.9",
-        "webpack-bundle-analyzer": "^4.10.2",
-        "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^3.11.2",
-        "webpack-merge": "^6.0.1",
-        "webpackbar": "^7.0.0"
+        "stylelint": "^17.12.0",
+        "stylelint-config-recess-order": "^7.7.0",
+        "stylelint-config-standard": "^40.0.0",
+        "stylelint-less": "^4.2.1",
+        "stylelint-order": "^8.1.1",
+        "typescript": "^6.0.3",
+        "vite": "^8.0.14",
+        "vite-plugin-svgr": "^5.2.0"
     },
     "dependencies": {
         "@phosphor-icons/react": "^2.1.10",
@@ -133,6 +99,6 @@
     },
     "volta": {
         "node": "22.22.3",
-        "npm": "10.9.8"
+        "npm": "9.6.6"
     }
 }

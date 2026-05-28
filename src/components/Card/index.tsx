@@ -1,4 +1,3 @@
-import React from 'react';
 import './index.less';
 
 interface CardProps {
@@ -6,7 +5,7 @@ interface CardProps {
 }
 
 const Card = (props: CardProps) => {
-    const { children } = props;
+    const {children} = props;
     return <div className='cp-card'>{children}</div>;
 };
 

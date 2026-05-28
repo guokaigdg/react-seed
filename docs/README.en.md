@@ -26,7 +26,6 @@
 
 ## 🪅 Related Versions
 
-- ⚡️ Vite version: [react-template-vite](https://github.com/guokaigdg/react-template-vite)
 - 📱 Mobile version: [react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## ✨ Features
@@ -43,17 +42,17 @@
 | ---------- | -------------------------------------------------------------------------------- | --------- |
 | Framework  | React + ReactDOM                                                                 | 19.x      |
 | Language   | TypeScript                                                                       | 5.x       |
-| Build      | Webpack (custom config)                                                          | 5.x       |
+| Build      | Vite + `@vitejs/plugin-react`                                                    | 8.x       |
 | Routing    | `react-router`                                                                   | 7.x       |
 | State      | MobX + `mobx-react-lite`                                                         | 6.x / 4.x |
 | Request    | axios + axios-retry                                                              | 1.x       |
 | Style      | Less + CSS Modules + PostCSS                                                     | —         |
-| Icon       | `@phosphor-icons/react` + custom SvgIcon                                         | —         |
+| Icon       | `@phosphor-icons/react` + local svg as React component (`vite-plugin-svgr`)      | —         |
 | Convention | ESLint 9 (flat config) + Prettier + Stylelint + husky + lint-staged + commitlint | —         |
 
 ## ⌛️ Requirements
 
-- Node ≥ 18.0.0 (CI pinned to 22.22.3 via volta)
+- Node ≥ 22.22.1 (CI pinned to 22.22.3 via volta)
 - npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm — pick one
 
 ## 🏃 Quick Start
@@ -81,15 +80,14 @@ npm run clean        # clean node_modules
 
 ```
 react-seed/
-├── webpack/                 # Custom build configuration
-│   ├── config/              # webpack common/dev/prod configs
-│   └── server/              # dev server entry
+├── vite.config.ts           # Vite build config (alias / plugins / build / server)
+├── index.html               # HTML entry template (Vite root)
 ├── public/
-│   ├── favicon.ico
-│   └── index.html           # HTML entry template
+│   └── favicon.ico          # Static assets (copied as-is to build output)
 ├── src/
 │   ├── index.tsx            # App mount entry
 │   ├── App.tsx              # Root component + useRoutes
+│   ├── vite-env.d.ts        # Vite types & import.meta.env declarations
 │   ├── router/              # Centralized routes (React.lazy + SuspenseLazy)
 │   ├── api/                 # API layer (axios wrapper, grouped by page)
 │   ├── store/               # MobX stores
@@ -102,6 +100,9 @@ react-seed/
 │   ├── assets/              # Static assets (incl. svg sprite)
 │   └── styles/index.less    # Global styles
 ├── docs/                    # Design materials, UI references, English README
+├── .env.development         # Development env variables
+├── .env.qa                  # QA env variables
+├── .env.production          # Production env variables
 ├── eslint.config.mjs        # ESLint 9 flat config
 ├── tsconfig.json            # TS config (with path alias)
 ├── AGENTS.md                # Project guide for AI coding assistants
@@ -112,7 +113,7 @@ react-seed/
 
 ### Path Alias
 
-Defined in both `tsconfig.json` and Webpack config — **prefer alias over relative paths**:
+Defined in both `tsconfig.json` and `vite.config.ts` — **prefer alias over relative paths**:
 
 ```ts
 import {Button} from '@/components';

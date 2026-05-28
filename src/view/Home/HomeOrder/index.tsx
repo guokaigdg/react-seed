@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useStores } from '@/store';
-import { Button } from '@/components';
-import { PhoneIcon, ChatsIcon, KeyboardIcon, CreditCardIcon, LinuxLogoIcon } from '@phosphor-icons/react';
+import {useState} from 'react';
+import {useStores} from '@/store';
+import {Button} from '@/components';
+import {PhoneIcon, ChatsIcon, KeyboardIcon, CreditCardIcon, LinuxLogoIcon} from '@phosphor-icons/react';
 import greyImg from '../../../assets/images/keyboard/陨石灰.jpg';
 import pinkImg from '../../../assets/images/keyboard/粉.jpg';
 import yamaImg from '../../../assets/images/keyboard/亚麻.jpg';
@@ -12,12 +12,12 @@ import greenImg from '../../../assets/images/keyboard/绿.jpg';
 import blueImg from '../../../assets/images/keyboard/蓝.jpg';
 import redImg from '../../../assets/images/keyboard/红.jpg';
 import whiteImg from '../../../assets/images/keyboard/闪白.jpg';
-import { observer } from 'mobx-react-lite';
+import {observer} from 'mobx-react-lite';
 import './index.less';
 
 const HomeTwo = () => {
-    const { globalStore } = useStores();
-    const { loading, orderData, getPostOrder } = globalStore;
+    const {globalStore} = useStores();
+    const {loading, orderData, getPostOrder} = globalStore;
 
     const [formData, setFormData] = useState({
         item: 'navi',
@@ -28,7 +28,7 @@ const HomeTwo = () => {
     console.log('orderData', orderData?.length);
 
     const handleChange = (e: any) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value
@@ -70,7 +70,7 @@ const HomeTwo = () => {
             <div className='home-order home-order-bg'>
                 <span className='order-title'>订单查询 Matrix Navi</span>
                 <div className='search-wrap'>
-                    <span style={{ marginRight: '5px' }}>
+                    <span style={{marginRight: '5px'}}>
                         <CreditCardIcon size={30} weight='duotone' />
                     </span>
                     <input
@@ -81,7 +81,7 @@ const HomeTwo = () => {
                         onChange={handleChange}
                         placeholder='输入支付宝订单号'
                     />
-                    <span style={{ marginRight: '5px', marginLeft: '10px' }}>
+                    <span style={{marginRight: '5px', marginLeft: '10px'}}>
                         <LinuxLogoIcon size={30} weight='duotone' />
                     </span>
                     <input
@@ -101,15 +101,15 @@ const HomeTwo = () => {
                         <div className='order-list-info'>
                             <div className='order-title-info'>
                                 <ChatsIcon size={26} weight='duotone' />
-                                <span style={{ marginLeft: '10px' }}>{orderData[0]?.qq}</span>
+                                <span style={{marginLeft: '10px'}}>{orderData[0]?.qq}</span>
                             </div>
                             <div className='order-title-info'>
                                 <PhoneIcon size={26} weight='duotone' />
-                                <span style={{ marginLeft: '10px' }}>{orderData[0]?.phone}</span>
+                                <span style={{marginLeft: '10px'}}>{orderData[0]?.phone}</span>
                             </div>
                             <div className='order-title-info'>
                                 <KeyboardIcon size={26} weight='duotone' />
-                                <span style={{ marginLeft: '10px' }}>数量: {orderData[0]?.ver.length}个</span>
+                                <span style={{marginLeft: '10px'}}>数量: {orderData[0]?.ver.length}个</span>
                             </div>
                         </div>
                         {orderData.map((item: any) => (

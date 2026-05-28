@@ -1,4 +1,4 @@
-import React, {Suspense, lazy, ComponentType} from 'react';
+import {Suspense, lazy, ComponentType} from 'react';
 
 const SuspenseLazy = (loader: () => Promise<{default: ComponentType<any>}>) => {
     const LazyComponent = lazy(loader);

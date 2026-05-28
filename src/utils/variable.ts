@@ -1,2 +1,2 @@
-export const baseURL = process.env.USER_BASE_URL;
-export const basename = process.env.USER_BASENAME;
+export const baseURL = import.meta.env.USER_BASE_URL as string;
+export const basename = import.meta.env.USER_BASENAME as string;

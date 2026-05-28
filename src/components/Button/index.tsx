@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import {CSSProperties} from 'react';
 import type {ButtonType} from './buttonHelpers';
 import CX from 'classnames';
 import './index.less';

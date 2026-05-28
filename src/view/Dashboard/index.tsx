@@ -1,6 +1,13 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
-import { IconContext, HorseIcon, AddressBookIcon, AndroidLogoIcon, ApertureIcon, HeartIcon, CubeIcon } from '@phosphor-icons/react';
+import {observer} from 'mobx-react-lite';
+import {
+    IconContext,
+    HorseIcon,
+    AddressBookIcon,
+    AndroidLogoIcon,
+    ApertureIcon,
+    HeartIcon,
+    CubeIcon
+} from '@phosphor-icons/react';
 import './index.less';
 
 const Dashboard = () => {

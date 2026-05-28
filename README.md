@@ -26,7 +26,6 @@
 
 ## 🪅 相关版本
 
-- ⚡️ Vite 版本：[react-template-vite](https://github.com/guokaigdg/react-template-vite)
 - 📱 移动端版本：[react-template-mobile](https://github.com/guokaigdg/react-template-mobile)
 
 ## ✨ 特性
@@ -43,17 +42,17 @@
 | ---- | -------------------------------------------------------------------------------- | --------- |
 | 框架 | React + ReactDOM                                                                 | 19.x      |
 | 语言 | TypeScript                                                                       | 5.x       |
-| 构建 | Webpack（自定义配置）                                                            | 5.x       |
+| 构建 | Vite + `@vitejs/plugin-react`                                                    | 8.x       |
 | 路由 | `react-router`                                                                   | 7.x       |
 | 状态 | MobX + `mobx-react-lite`                                                         | 6.x / 4.x |
 | 请求 | axios + axios-retry                                                              | 1.x       |
 | 样式 | Less + CSS Modules + PostCSS                                                     | —         |
-| 图标 | `@phosphor-icons/react` + 自研 SvgIcon                                           | —         |
+| 图标 | `@phosphor-icons/react` + 本地 svg as React 组件（`vite-plugin-svgr`）           | —         |
 | 规范 | ESLint 9 (flat config) + Prettier + Stylelint + husky + lint-staged + commitlint | —         |
 
 ## ⌛️ 环境要求
 
-- Node ≥ 18.0.0（CI 通过 volta 固定为 22.22.3）
+- Node ≥ 22.22.1（CI 通过 volta 固定为 22.22.3）
 - npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm 任选其一
 
 ## 🏃 快速开始
@@ -81,15 +80,14 @@ npm run clean        # 清理 node_modules
 
 ```
 react-seed/
-├── webpack/                 # 自定义构建配置
-│   ├── config/              # webpack common/dev/prod 配置
-│   └── server/              # dev server 启动入口
+├── vite.config.ts           # Vite 构建配置（alias / plugins / build / server）
+├── index.html               # HTML 入口模板（Vite 根目录）
 ├── public/
-│   ├── favicon.ico
-│   └── index.html           # HTML 入口模板
+│   └── favicon.ico          # 静态资源（不参与构建处理）
 ├── src/
 │   ├── index.tsx            # 应用挂载入口
 │   ├── App.tsx              # 根组件 + useRoutes
+│   ├── vite-env.d.ts        # Vite 类型与 import.meta.env 声明
 │   ├── router/              # 集中式路由表（React.lazy + SuspenseLazy）
 │   ├── api/                 # 接口层（axios 封装 + 按页面分目录）
 │   ├── store/               # MobX stores
@@ -102,6 +100,9 @@ react-seed/
 │   ├── assets/              # 静态资源（含 svg sprite）
 │   └── styles/index.less    # 全局样式
 ├── docs/                    # 设计资料、UI 参考、英文 README
+├── .env.development         # 开发环境变量
+├── .env.qa                  # QA 环境变量
+├── .env.production          # 生产环境变量
 ├── eslint.config.mjs        # ESLint 9 flat config
 ├── tsconfig.json            # TS 配置（含 path alias）
 ├── AGENTS.md                # 面向 AI 编码助手的项目说明
@@ -112,7 +113,7 @@ react-seed/
 
 ### 路径别名
 
-在 `tsconfig.json` 与 Webpack 配置中均已定义，**优先使用别名而非相对路径**：
+在 `tsconfig.json` 与 `vite.config.ts` 中均已定义，**优先使用别名而非相对路径**：
 
 ```ts
 import {Button} from '@/components';

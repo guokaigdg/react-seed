@@ -1,8 +1,7 @@
-import React from 'react';
-import { Observer, useLocalObservable } from 'mobx-react-lite';
-import { Button } from '@/components';
-import { fetchPokemon } from '@/api/home-two';
-import { runInAction } from 'mobx';
+import {Observer, useLocalObservable} from 'mobx-react-lite';
+import {Button} from '@/components';
+import {fetchPokemon} from '@/api/home-two';
+import {runInAction} from 'mobx';
 
 const ObserverHoc = () => {
     /**
@@ -23,20 +22,20 @@ const ObserverHoc = () => {
         },
         async onFetchPokemon() {
             this.loading = true;
-            const result: any = await fetchPokemon({ limit: 100 });
-            const { results } = result.data;
+            const result: any = await fetchPokemon({limit: 100});
+            const {results} = result.data;
             runInAction(() => {
                 this.list = results;
                 this.loading = false;
             });
         },
-        onChange(item: { name: string; url: string }) {
+        onChange(item: {name: string; url: string}) {
             // 点击某个条目时，修改该条目的 name，还记得 mobx 使用的是同一份数据吗，这里的更改能影响到列表的数据
             item.name = '我被修改了';
         }
     }));
 
-    const ObserverItem = ({ item }: { item: { name: string; url: string } }) => (
+    const ObserverItem = ({item}: {item: {name: string; url: string}}) => (
         <Observer>
             {() => {
                 // 只有修改数据渲染, 对于大量数据渲染有明显性能提升
@@ -54,10 +53,12 @@ const ObserverHoc = () => {
                 }
                 return (
                     <div>
-                        <h3 style={{ marginBottom: '10px' }}>Observer 点击获取数据, 打开控制台, 点击某一项查看console.log(渲染情况)</h3>
+                        <h3 style={{marginBottom: '10px'}}>
+                            Observer 点击获取数据, 打开控制台, 点击某一项查看console.log(渲染情况)
+                        </h3>
                         <Button onClick={() => store.onFetchPokemon()}>获取数据Observer</Button>
                         <div>
-                            {store.list?.map((item: { name: string; url: string }) => (
+                            {store.list?.map((item: {name: string; url: string}) => (
                                 <ObserverItem key={item.url} item={item} />
                             ))}
                         </div>

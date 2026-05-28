@@ -24,7 +24,7 @@ declare module '*.jpeg' {
 }
 
 declare module '*.png' {
-    const floorURLpath: string;
+    const path: string;
     export default path;
 }
 

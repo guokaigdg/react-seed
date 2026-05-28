@@ -7,7 +7,7 @@ const whiteRetry = new Set(['ECONNABORTED', undefined, 0]);
 // 日志函数
 const logger = {
     log: (message: string) => {
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.DEV) {
             console.log(message);
         }
     }
