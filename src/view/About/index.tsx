@@ -49,7 +49,7 @@ const About = () => {
 
     return (
         <div className={styles.aboutRoot}>
-            <a href='https://github.com/guokaigdg/react-enterprise-template'>
+            <a href='https://github.com/guokaigdg/react-seed'>
                 <GithubLogoIcon size={68} color='#f9f4da' />
             </a>
             <div className={styles.header}> 恭喜开启 less + css modules 模式 </div>

@@ -52,7 +52,7 @@ function Home() {
         <div className={homeClasses}>
             <div className='home-tab'>
                 <div className='github-icon'>
-                    <a href='https://github.com/guokaigdg/react-enterprise-template'>
+                    <a href='https://github.com/guokaigdg/react-seed'>
                         <GithubLogoIcon size={52} color='#f9f4da' />
                     </a>
                 </div>
