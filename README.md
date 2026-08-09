@@ -16,7 +16,8 @@
 </div>
 <br/>
 <p align="center">
-    简体中文 | <a href="./docs/README.en.md">English</a>
+    <a href="./README.md"><img src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-1D7FEC?style=for-the-badge" alt="简体中文"/></a>
+    <a href="./docs/README.en.md"><img src="https://img.shields.io/badge/English-9AA0A6?style=for-the-badge" alt="English"/></a>
 </p>
 
 ## 🔗 在线 Demo
@@ -182,6 +183,7 @@ git commit -m "feat: ✨ 新增订单查询页面"
 
 - 📬 有问题欢迎提 Issues 或留言
 - 🧙‍♀️ 欢迎所有的贡献者 [查看如何贡献代码](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
+- 🐱 如果这个项目对你有帮助，不妨请开发者的猫吃个罐罐——喵星人才是项目运转的真正燃料：[赞助项目](https://guokaigdg.github.io/home/payment.html)
 
 ## 💡 开源协议
 

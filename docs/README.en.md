@@ -16,7 +16,8 @@
 </div>
 <br/>
 <p align="center">
-    <a href="../README.md">简体中文</a> | English
+    <a href="../README.md"><img src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-9AA0A6?style=for-the-badge" alt="简体中文"/></a>
+    <a href="./README.en.md"><img src="https://img.shields.io/badge/English-1D7FEC?style=for-the-badge" alt="English"/></a>
 </p>
 
 ## 🔗 Demo
@@ -182,6 +183,7 @@ Common types:
 
 - 📬 Feel free to open Issues
 - 🧙‍♀️ Pull Requests are welcome — [see how to contribute](https://n7j2qc9z43.feishu.cn/docx/HAu9d1PCuo12Cvxrlelc0eEWnNc?from=from_copylink)
+- 🐱 If this project helps you, why not treat the developer's cat to a can of food — cats are the real fuel that keeps this project running: [Sponsor the project](https://guokaigdg.github.io/home/payment.html)
 
 ## 💡 License
 
