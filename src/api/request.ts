@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import {type AxiosInstance, InternalAxiosRequestConfig, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
-const whiteRetry = new Set(['ECONNABORTED', undefined, 0]);
+const whiteRetry = new Set<string | undefined>(['ECONNABORTED', undefined]);
 // import {baseURL} from '@/utils/variable';
 
 // 日志函数
@@ -36,7 +36,7 @@ axiosRetry(serviceAxios, {
     retryCondition: (err) => {
         // true为打开自动发送请求，false为关闭自动发送请求
         const {code, message} = err;
-        return whiteRetry.has(<string>code) || message.includes('timeout');
+        return whiteRetry.has(code) || Boolean(message?.includes('timeout'));
     }
 });
 
@@ -66,7 +66,7 @@ serviceAxios.interceptors.response.use(
 
 // 统一发起请求的函数
 function createRequest(service: AxiosInstance) {
-    return function <T>(config: AxiosRequestConfig): Promise<T> {
+    return function <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
         return service(config);
     };
 }

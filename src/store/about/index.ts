@@ -1,4 +1,4 @@
-import {makeObservable, observable, action, computed, flow} from 'mobx';
+import {makeObservable, observable, action, computed} from 'mobx';
 import {globalStore} from '../global';
 
 class About {
@@ -17,8 +17,7 @@ class About {
         makeObservable(this, {
             count: observable,
             aboutAddCount: action,
-            getDouble: computed,
-            incrementAsync: flow
+            getDouble: computed
         });
         /**
          * 常用装饰器类型:
@@ -37,11 +36,6 @@ class About {
         const {count: globalCount} = globalStore;
         this.count += globalCount;
     };
-
-    *incrementAsync() {
-        yield new Promise((resolve) => setTimeout(resolve, 1000));
-        this.count++;
-    }
 }
 
 const aboutStore = new About();

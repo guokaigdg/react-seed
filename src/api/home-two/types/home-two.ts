@@ -44,19 +44,13 @@ export interface GetRequestPokemonSearchType {
     query: string;
 }
 
-export interface SearchPokemonResponseType {
-    count: number;
+// pokeapi 列表接口原始返回结构（无统一包装）
+export interface GetResponsePokemonData {
     results: GetPokemonDataType[];
+    count: number;
+    next: string | null;
+    previous: string | null;
 }
 
-// 接口返回统一格式数据
-export type GetResponsePokemonData = ApiResponseData<{
-    results: GetPokemonDataType[];
-    count: number;
-    next: string;
-    previous: number | null;
-}>;
-
-export type GetResponsePokemonDetail = ApiResponseData<GetPokemonDetailType>;
-
-export type GetResponseSearchPokemon = ApiResponseData<SearchPokemonResponseType>;
+// pokeapi 详情接口原始返回结构（无统一包装）
+export type GetResponsePokemonDetail = GetPokemonDetailType;

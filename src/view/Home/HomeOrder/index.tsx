@@ -15,7 +15,7 @@ import whiteImg from '../../../assets/images/keyboard/闪白.jpg';
 import {observer} from 'mobx-react-lite';
 import './index.less';
 
-const HomeTwo = () => {
+const HomeOrder = () => {
     const {globalStore} = useStores();
     const {loading, orderData, getPostOrder} = globalStore;
 
@@ -25,9 +25,7 @@ const HomeTwo = () => {
         qq: ''
     });
 
-    console.log('orderData', orderData?.length);
-
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setFormData({
             ...formData,
@@ -109,12 +107,12 @@ const HomeTwo = () => {
                             </div>
                             <div className='order-title-info'>
                                 <KeyboardIcon size={26} weight='duotone' />
-                                <span style={{marginLeft: '10px'}}>数量: {orderData[0]?.ver.length}个</span>
+                                <span style={{marginLeft: '10px'}}>数量: {orderData[0]?.ver?.length ?? 0}个</span>
                             </div>
                         </div>
-                        {orderData.map((item: any) => (
+                        {orderData.map((item) => (
                             <div key={item.qq} className='order-item-wrap'>
-                                {item.ver.map((verItem: string) => (
+                                {(item.ver ?? []).map((verItem: string) => (
                                     <div key={verItem} className='order-item'>
                                         <img alt='' className='img' src={matchImg(verItem)} />
                                         <div>{verItem}</div>
@@ -129,4 +127,4 @@ const HomeTwo = () => {
     );
 };
 
-export default observer(HomeTwo);
+export default observer(HomeOrder);

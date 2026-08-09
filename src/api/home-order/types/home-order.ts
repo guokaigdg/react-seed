@@ -8,11 +8,11 @@ export interface GetOrderDataType {
     id: number;
     qq: string;
     phone: string;
-    [x: string]: any;
+    ver?: string[];
 }
 
-// 接口返回统一格式数据
-export type GetResponseOrdereData = ApiResponseData<{
+// 接口返回原始结构（无统一包装）
+export interface GetResponseOrdereData {
     result: string;
     orders: GetOrderDataType[];
-}>;
+}

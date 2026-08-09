@@ -64,8 +64,7 @@ export const isEmail = (email: string) => {
 
 /** 判断是否为 MAC 地址 */
 export const isMAC = (mac: string) => {
-    const reg =
-        /^(([a-f0-9][0,2,4,6,8,a,c,e]:([a-f0-9]{2}:){4})|([a-f0-9][0,2,4,6,8,a,c,e]-([a-f0-9]{2}-){4}))[a-f0-9]{2}$/i;
+    const reg = /^(([0-9a-f][02468ace]:([0-9a-f]{2}:){4})|([0-9a-f][02468ace]-([0-9a-f]{2}-){4}))[0-9a-f]{2}$/i;
     return reg.test(mac);
 };
 

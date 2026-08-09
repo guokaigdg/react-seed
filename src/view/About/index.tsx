@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react';
 import {observer, useLocalObservable} from 'mobx-react-lite';
 import {runInAction} from 'mobx';
-import {GetResponsePokemonData} from '@/api/home-two/types/home-two';
 import {GithubLogoIcon} from '@phosphor-icons/react';
-import {fetchPokemon} from '@/api/home-two';
+import {fetchPokemonList} from '@/api/home-two';
 import * as styles from './index.module.less';
 
 interface StoreType {
@@ -20,7 +19,7 @@ const About = () => {
         pokemon: '',
         async getFetchPokemo() {
             try {
-                const res: GetResponsePokemonData = await fetchPokemon({
+                const res = await fetchPokemonList({
                     limit: 500
                 });
                 const {results} = res.data;

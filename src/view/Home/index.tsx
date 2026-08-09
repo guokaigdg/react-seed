@@ -1,4 +1,4 @@
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
 import {useNavigate, Outlet, useLocation} from 'react-router';
 import CX from 'classnames';
 import {observer} from 'mobx-react-lite';
@@ -25,9 +25,7 @@ interface LinkItem {
 
 function Home() {
     const navigate = useNavigate();
-    const params = useLocation();
-    const {pathname} = params;
-    const [activeLink, setActiveLink] = useState<string>(pathname);
+    const {pathname} = useLocation();
 
     const MenuLink = [
         {name: 'HomeOne', icon: <GlobeHemisphereEastIcon />, link: '/home/one'},
@@ -40,12 +38,11 @@ function Home() {
     ];
 
     const handleClickLink = (link: string) => {
-        setActiveLink(link);
         navigate(link);
     };
 
     const homeClasses = CX('home-root', {
-        'home-root-no-bg': activeLink === '/home/order'
+        'home-root-no-bg': pathname === '/home/order'
     });
 
     return (
@@ -61,7 +58,7 @@ function Home() {
                         <Button
                             type='text'
                             className='text-btn'
-                            active={activeLink === item.link}
+                            active={pathname === item.link}
                             onClick={() => handleClickLink(item.link)}
                         >
                             <IconContext.Provider

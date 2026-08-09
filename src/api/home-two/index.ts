@@ -18,31 +18,54 @@ export function fetchPokemonByName(name: string) {
 }
 
 /**
- * @function fetchPokemon
- * @description 获取宝可梦列表（包含详细信息）
+ * @function fetchPokemonList
+ * @description 获取宝可梦列表（仅列表，不拉取详情）
  */
 
-export async function fetchPokemon(data: GetRequestPokemonDataType) {
-    const response: any = await request<GetResponsePokemonData>({
+export function fetchPokemonList(data: GetRequestPokemonDataType) {
+    return request<GetResponsePokemonData>({
         url: 'https://pokeapi.co/api/v2/pokemon',
         params: data
     });
+}
+
+/**
+ * @description 限制并发数的 map：同一时间最多 limit 个任务执行
+ */
+async function mapLimit<T, R>(items: T[], limit: number, mapper: (item: T) => Promise<R>): Promise<R[]> {
+    const results: R[] = [];
+    let index = 0;
+    const workers = Array.from({length: Math.min(limit, items.length)}, async () => {
+        while (index < items.length) {
+            const current = index++;
+            results[current] = await mapper(items[current]);
+        }
+    });
+    await Promise.all(workers);
+    return results;
+}
+
+/**
+ * @function fetchPokemon
+ * @description 获取宝可梦列表（包含详细信息，详情并发受限）
+ */
+
+export async function fetchPokemon(data: GetRequestPokemonDataType) {
+    const response = await fetchPokemonList(data);
 
     const results = response.data.results || [];
 
-    const detailedResults = await Promise.all(
-        results.map(async (pokemon: any) => {
-            try {
-                const detailResponse = await fetchPokemonByName(pokemon.name);
-                return {
-                    ...pokemon,
-                    detail: detailResponse.data
-                };
-            } catch {
-                return pokemon;
-            }
-        })
-    );
+    const detailedResults = await mapLimit(results, 5, async (pokemon) => {
+        try {
+            const detailResponse = await fetchPokemonByName(pokemon.name);
+            return {
+                ...pokemon,
+                detail: detailResponse.data
+            };
+        } catch {
+            return pokemon;
+        }
+    });
 
     return {
         ...response,
@@ -59,7 +82,7 @@ export async function fetchPokemon(data: GetRequestPokemonDataType) {
  */
 
 export async function searchPokemon(query: string) {
-    const response: any = await request({
+    const response = await request<GetResponsePokemonData>({
         url: 'https://pokeapi.co/api/v2/pokemon',
         params: {limit: 1000}
     });
@@ -67,21 +90,19 @@ export async function searchPokemon(query: string) {
     const allPokemon = response.data.results || [];
     const searchTerm = query.toLowerCase();
 
-    const filtered = allPokemon.filter((pokemon: any) => pokemon.name.toLowerCase().includes(searchTerm));
+    const filtered = allPokemon.filter((pokemon) => pokemon.name.toLowerCase().includes(searchTerm));
 
-    const detailedResults = await Promise.all(
-        filtered.slice(0, 20).map(async (pokemon: any) => {
-            try {
-                const detailResponse = await fetchPokemonByName(pokemon.name);
-                return {
-                    ...pokemon,
-                    detail: detailResponse.data
-                };
-            } catch {
-                return pokemon;
-            }
-        })
-    );
+    const detailedResults = await mapLimit(filtered.slice(0, 20), 5, async (pokemon) => {
+        try {
+            const detailResponse = await fetchPokemonByName(pokemon.name);
+            return {
+                ...pokemon,
+                detail: detailResponse.data
+            };
+        } catch {
+            return pokemon;
+        }
+    });
 
     return {
         data: {
@@ -89,21 +110,4 @@ export async function searchPokemon(query: string) {
             results: detailedResults
         }
     };
-}
-
-/**
- * @function getJsonTest
- * @description 请求测试 application/json
- * @description 使用说明 https://juejin.cn/post/7365414174217404466
- */
-
-export function getJsonTest(params: GetRequestPokemonDataType) {
-    return request({
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        url: '/api/data/xxx',
-        params
-    });
 }
