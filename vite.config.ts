@@ -11,9 +11,10 @@ export default defineConfig(({mode}) => {
         envPrefix: ['VITE_', 'USER_', 'PUBLIC_', 'ENV'],
         resolve: {
             alias: {
-                '@': path.resolve(__dirname, 'src'),
-                Components: path.resolve(__dirname, 'src/components'),
-                Utils: path.resolve(__dirname, 'src/utils')
+                // 使用 import.meta.dirname 而非 __dirname：后者在 configLoader: 'native' 下不可用
+                '@': path.resolve(import.meta.dirname, 'src'),
+                Components: path.resolve(import.meta.dirname, 'src/components'),
+                Utils: path.resolve(import.meta.dirname, 'src/utils')
             }
         },
         css: {

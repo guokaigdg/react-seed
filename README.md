@@ -42,10 +42,10 @@
 | 分类 | 选型                                                                             | 版本      |
 | ---- | -------------------------------------------------------------------------------- | --------- |
 | 框架 | React + ReactDOM                                                                 | 19.x      |
-| 语言 | TypeScript                                                                       | 5.x       |
+| 语言 | TypeScript                                                                       | 6.x       |
 | 构建 | Vite + `@vitejs/plugin-react`                                                    | 8.x       |
-| 路由 | `react-router`                                                                   | 7.x       |
-| 状态 | MobX + `mobx-react-lite`                                                         | 6.x / 4.x |
+| 路由 | `react-router`                                                                   | 8.x       |
+| 状态 | MobX + `mobx-react-lite`                                                         | 7.x / 5.x |
 | 请求 | axios + axios-retry                                                              | 1.x       |
 | 样式 | Less + CSS Modules + PostCSS                                                     | —         |
 | 图标 | `@phosphor-icons/react` + 本地 svg as React 组件（`vite-plugin-svgr`）           | —         |
@@ -53,7 +53,7 @@
 
 ## ⌛️ 环境要求
 
-- Node ≥ 22.22.1（CI 通过 volta 固定为 22.22.3）
+- Node ≥ 24.0.0（CI 通过 volta 固定为 24.19.0）
 - npm ≥ 7.0.0 / yarn ≥ 1.22.4 / pnpm 任选其一
 
 ## 🏃 快速开始

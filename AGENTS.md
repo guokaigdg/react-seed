@@ -36,17 +36,24 @@
 | 分类 | 选型 | 版本 / 备注 |
 | --- | --- | --- |
 | 框架 | React + ReactDOM | **19.x**（启用 `react-jsx` 自动 JSX 运行时，无需 `import React`） |
-| 语言 | TypeScript | **5.x**，`strict: true`，并启用 `noUnusedLocals` / `noUnusedParameters` |
+| 语言 | TypeScript | **6.x**，`strict: true`，并启用 `noUnusedLocals` / `noUnusedParameters` |
 | 构建 | **Vite 8** + `@vitejs/plugin-react` | 配置位于 `vite.config.ts`（根目录，Vite 8 默认 Rolldown 打包） |
 | 开发服务 | `vite` 内置 dev server | 端口 3000；`server.host: true` |
-| 路由 | `react-router` | **v7**，从 `react-router` 导入（**不是** `react-router-dom`） |
-| 状态管理 | MobX + `mobx-react-lite` | mobx 6 / lite 4，`enforceActions: 'always'` |
+| 路由 | `react-router` | **v8**，从 `react-router` 导入（**不是** `react-router-dom`） |
+| 状态管理 | MobX + `mobx-react-lite` | mobx 7 / lite 5，`enforceActions: 'always'` |
 | 网络请求 | axios + `axios-retry` | 全局封装见 `src/api/request.ts` |
 | 样式 | Less + CSS Modules | Vite 内置，`*.module.less` 自动开启 CSS Modules |
 | 图标 | `@phosphor-icons/react` + 本地 svg as React 组件（`vite-plugin-svgr`） | svg 资源：`src/assets/icons/svg/` |
 | 代码质量 | ESLint 9（flat config）+ Prettier + Stylelint + husky + lint-staged + commitlint | 配置：`eslint.config.mjs` |
 | 环境变量 | Vite `.env.[mode]` | 三套环境：`development` / `qa` / `production`，通过 `import.meta.env` 访问 |
-| Node | ≥ 22.22.1；npm ≥ 7；volta 固定 22.22.3 | 见 `package.json#engines` / `volta` |
+| Node | ≥ 24.0.0；npm ≥ 7；volta 固定 24.19.0 | 见 `package.json#engines` / `volta` |
+
+> ⚠️ **两个刻意保留的大版本上限**（截至 2026-10，非遗漏，是生态 peer 依赖尚未放开）：
+>
+> - **TypeScript 停留在 6.x**：`@typescript-eslint`（最新 8.x）的 peer 为 `typescript >=4.8.4 <6.1.0`，暂无 v9 版本，放开 TS 7 会直接冲突。
+> - **ESLint 停留在 9.x**：`eslint-plugin-react`（最新 7.37.5）的 peer 上限是 `eslint ^9.7`，不支持 ESLint 10。强装后 `eslint.config.mjs` 会因 `ERR_MODULE_NOT_FOUND` 直接失败。
+>
+> 另外：`eslint.config.mjs` 直接 `import '@eslint/js'`，但它**未**在 `package.json` 声明，仅靠 eslint 的传递依赖提升可用。ESLint 10 不再提升该包，届时必须显式声明 `@eslint/js`。
 
 ## 3. 目录结构
 
@@ -152,7 +159,7 @@ import request from '@/api/request';
 ## 6. 运行与构建
 
 ```bash
-npm install            # Node ≥ 22.22.1，建议使用 volta 锁定版本
+npm install            # Node ≥ 24.0.0，建议使用 volta 锁定版本
 npm run dev            # 启动开发服务（默认占用空闲端口）
 npm run build:prod     # 产物输出至 build/
 npm run deploy         # 一键发布到 gh-pages 分支
@@ -166,7 +173,7 @@ npm run deploy         # 一键发布到 gh-pages 分支
 - 懒加载统一通过 `SuspenseLazy(() => import('@/view/XxxPage'))`（Vite 自动按动态 import 拆分 chunk，不需要 `webpackChunkName` 注释）
 - 嵌套路由通过 `children` 表达，参考 `home`（`/home/one` 是默认重定向目标）
 - 导航 / 跳转：使用 `react-router` 的 `<Link>` / `useNavigate` / `<Navigate>`
-- ⚠️ 不要从 `react-router-dom` 导入；v7 已合并到 `react-router`
+- ⚠️ 不要从 `react-router-dom` 导入；自 v7 起已合并到 `react-router`
 
 ### 7.2 状态管理（MobX）
 
@@ -313,7 +320,7 @@ import FooIcon from '@/assets/icons/svg/foo.svg?react';
 ## 9. AI 修改代码须知
 
 1. **不要**新增功能等价的依赖：请求用 `axios`、状态用 `mobx`、图标用 `phosphor` 或 `?react` 引入的本地 svg、类名拼接用 `classnames`
-2. **不要**把 `react-router` 改成 `react-router-dom`：v7 已合并
+2. **不要**把 `react-router` 改成 `react-router-dom`：自 v7 起已合并
 3. **不要**绕过 `request.ts`：保持统一拦截器与重试策略
 4. **不要**直接修改 observable：必须在 action / `runInAction` 中
 5. **不要**主动新增单测：项目无测试基建，除非用户明确要求
@@ -399,5 +406,5 @@ export const stores = {globalStore, aboutStore, counterStore};
 
 - 原作者教程（掘金）：<https://juejin.cn/post/7197790401495121977>
 - 移动端版本：<https://github.com/guokaigdg/react-template-mobile>
-- React Router v7 升级指南：<https://reactrouter.com/7.1.5/upgrading/v6>
+- React Router v7 → v8 升级指南：<https://reactrouter.com/upgrading/v7>
 - MobX 文档：<https://mobx.js.org/>
